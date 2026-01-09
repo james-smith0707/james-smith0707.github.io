@@ -151,8 +151,9 @@ color: var(--text1-colour);
     grid-template-areas:
     "title title coverImage"
     "description description coverImage"
-    "caption caption caption"
-    "picture picture picture";
+    "pictureTitle pictureTitle pictureTitle"
+    "picture picture picture"
+    "caption caption caption";
 
     grid-template-rows: auto auto auto 30vh;
     grid-template-columns: 1.3fr 0.7fr 2fr;
@@ -201,6 +202,20 @@ color: var(--text1-colour);
     color: var(--text1-colour);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
  
+}
+
+.mediaTitle
+
+{
+
+    grid-area: pictureTitle; 
+    font-size: 10px;
+    color: var(--text1-colour);
+    width: max-content;
+    justify-content: center;
+    justify-self: center;
+
+
 }
 
 .picture
@@ -424,7 +439,7 @@ color: var(--text1-colour);
 {
 
     color: var(--text1-colour);
-    font-size: 20px; 
+    font-size: 10px; 
     grid-area: caption;
     width: max-content;
     justify-content: center;

@@ -181,7 +181,8 @@ class project
     this.frontImage = 0;
     this.imageCarousel = new carousel(1);
     this.skills = []; 
-    this.captions = []
+    this.captions = [];
+    this.mediaTitles = [];
     this.startX = 0;
     this.startY = 0;
 
@@ -401,6 +402,11 @@ class project
         this.caption.textContent = this.captions[0];
         this.projectBox.appendChild(this.caption);
 
+        this.mediaTitle = document.createElement("h1");
+        this.mediaTitle.className = "mediaTitle";
+        this.mediaTitle.textContent = this.mediaTitles[0];
+        this.projectBox.appendChild(this.mediaTitle);
+
         projectList.appendChild(this.projectBox);
 
 
@@ -507,6 +513,8 @@ class project
 
 
         this.caption.textContent = this.captions[this.imageCarousel.pos()];
+        this.mediaTitle.textContent = this.mediaTitles[this.imageCarousel.pos()];
+
 
         const newImage = document.getElementById(`${this.name}-image${this.imageCarousel.pos()}`);
         newImage.classList.add("pictureFront");
@@ -703,6 +711,8 @@ projects.at(-1).captions.push("the last robot picture");
 projects.at(-1).captions.push("the first robot picture");
 projects.at(-1).captions.push("the second robot picture");
 projects.at(-1).captions.push("the third robot picture");
+
+projects.at(-1).mediaTitles.push("Pic 1");
 
 projects.push(new project("WatBotics Robotic Hand"));//-----------------------------
 projects.at(-1).cover = "images/robot3.jpg";

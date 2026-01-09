@@ -686,7 +686,7 @@ let projects = [];
 
 projects.push(new project("Rocketry Camera Mounts"));//-----------------------------
 projects.at(-1).cover = "images/robot3.jpg"
-projects.at(-1).addDescription("a cool robot","a really cool robot");
+projects.at(-1).addDescription("Developed a mounting system for three exterior rocket cameras","a really cool robot");
 
 projects.at(-1).addImage("robot1.jpg");
 projects.at(-1).addImage("robot2.jpg");
@@ -696,8 +696,8 @@ projects.at(-1).addModel("DownCam10.glb");
 projects.at(-1).addModel("DownCam10.glb");
 projects.at(-1).addVideo("vexRobotProject.mp4");
 
-projects.at(-1).captions.push("the first robot picture");
-projects.at(-1).captions.push("the second robot picture");
+projects.at(-1).captions.push("Mounting Part for the Downward facing camer including machined componet as well as 3D printed shell portion");
+projects.at(-1).captions.push("Part for the Canard facing Camera including 3D printed shell");
 projects.at(-1).captions.push("the third robot picture");
 projects.at(-1).captions.push("the last robot picture");
 projects.at(-1).captions.push("the first robot picture");

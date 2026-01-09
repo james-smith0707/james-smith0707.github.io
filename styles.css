@@ -1,15 +1,15 @@
 
 :root {
     
-    --background-colour-night: #0e0f22;
-    --background-colour-day: #e6ecef;
+    --background-colour-night: #1a1c4a;
+    --background-colour-day: #d2f0ff;
     --background-colour: var(--background-colour-night);
 
     --name-colour-night: #fafae4;
     --name-colour-day: #43315b;
     --name-colour: var(--name-colour-night);
 
-    --text1-colour-night: rgb(240, 255, 255);
+    --text1-colour-night: #fafae4;
     --text1-colour-day: rgb(0, 217, 255); 
     --text1-colour: var(--text1-colour-night);
 
@@ -17,8 +17,8 @@
     --text2-colour-day: rgb(0, 217, 255); 
     --text2-colour: var(--text1-colour-night);
 
-    --accent-colour-inactive-night: rgb(39, 30, 113);
-    --accent-colour-active-night: rgb(96, 64, 117);
+    --accent-colour-inactive-night: rgb(70, 30, 113);
+    --accent-colour-active-night: rgb(128, 84, 158);
     --accent-colour-inactive-day: rgb(61, 233, 56);
     --accent-colour-active-day: rgb(61, 233, 56);
     --accent-colour-active: var(--accent-colour-active-night);
@@ -31,14 +31,14 @@
     --secondary-colour-active: var(--secondary-colour-active-night);
     --secondary-colour-inactive: var(--secondary-colour-inactive-night);
 
-    --fill-colour-inactive-night: rgba(0, 0, 0, 0.062);
-    --fill-colour-active-night: rgb(0, 0, 75);
+    --fill-colour-inactive-night: rgba(18, 6, 52, 0.119);
+    --fill-colour-active-night: rgba(5, 5, 72, 0.542);
     --fill-colour-inactive-day: rgb(61, 233, 56);
     --fill-colour-active-day: rgb(61, 233, 56);
     --fill-colour-active: var(--fill-colour-active-night);
     --fill-colour-inactive: var(--fill-colour-inactive-night);
 
-    --highlight-colour-night: rgb(0, 255, 0);
+    --highlight-colour-night: rgb(211, 235, 55);
     --highlight-colour-day: rgb(255, 225, 0);
     --highlight-colour: var(--highlight-colour-night);
 
@@ -169,13 +169,13 @@ color: var(--text1-colour);
 
     background-color: var(--fill-colour-inactive);
     height: auto;
-    max-height: 10vh;
+    max-height: 20vh;
     grid-template-areas:
     "title title coverImage"
     "description description coverImage";
     column-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 6vh 4vh;
+    grid-template-rows: auto auto;
     
 
 }
@@ -404,10 +404,12 @@ color: var(--text1-colour);
 {
 
     grid-area: coverImage; 
-    height: 90%;
-    width: 100%;
+    height: auto;
+    max-height: 20vh;
+    width: 40vh;
     transition-duration: 1s;
     border-radius: 1vh;
+    justify-self: center;
 
 
 
@@ -417,7 +419,9 @@ color: var(--text1-colour);
 
 {
 
-    height: 10vh; 
+    max-height: 10vh;
+    width: auto;
+    justify-self: end;
 
 }
 
@@ -640,6 +644,14 @@ color: var(--text1-colour);
     padding: 20px;
     gap: 5px;
     grid-template-rows: auto auto 1fr;
+
+}
+
+.experienceBox:hover 
+
+{
+
+    border: 7px solid var(--accent-colour-active);
 
 }
 

@@ -399,12 +399,10 @@ class project
 
         this.caption = document.createElement("h1");
         this.caption.className = "pictureCaption";
-        this.caption.textContent = this.captions[0];
         this.projectBox.appendChild(this.caption);
 
         this.mediaTitle = document.createElement("h1");
         this.mediaTitle.className = "mediaTitle";
-        this.mediaTitle.textContent = this.mediaTitles[0];
         this.projectBox.appendChild(this.mediaTitle);
 
         projectList.appendChild(this.projectBox);
@@ -442,6 +440,8 @@ class project
         // }
 
         this.caption.textContent = this.captions[this.imageCarousel.pos()];
+        this.mediaTitle.textContent = this.mediaTitles[this.imageCarousel.pos()];
+
 
         const newImage = document.getElementById(`${this.name}-image${this.imageCarousel.pos()}`);
         newImage.classList.add("pictureFront");
@@ -463,6 +463,7 @@ class project
 
         this.projectDescription.textContent = this.blurb;
         this.caption.textContent = "";
+        this.mediaTitle.textContent = "";
         this.coverImage.classList.add("coverImageClosed");
 
 
@@ -482,7 +483,7 @@ class project
         setTimeout(() => {
             this.projectBox.classList.remove("projectActive");
         this.projectBox.classList.add("projectInactive");
-        }, 200);
+        }, 0);
 
 
 
@@ -702,7 +703,6 @@ projects.at(-1).addImage("robot3.jpg");
 projects.at(-1).addImage("robot2.jpg");
 projects.at(-1).addModel("DownCam10.glb");
 projects.at(-1).addModel("DownCam10.glb");
-projects.at(-1).addVideo("vexRobotProject.mp4");
 
 projects.at(-1).captions.push("Mounting Part for the Downward facing camer including machined componet as well as 3D printed shell portion");
 projects.at(-1).captions.push("Part for the Canard facing Camera including 3D printed shell");
@@ -710,9 +710,17 @@ projects.at(-1).captions.push("the third robot picture");
 projects.at(-1).captions.push("the last robot picture");
 projects.at(-1).captions.push("the first robot picture");
 projects.at(-1).captions.push("the second robot picture");
-projects.at(-1).captions.push("the third robot picture");
 
 projects.at(-1).mediaTitles.push("Pic 1");
+projects.at(-1).mediaTitles.push("Pic 2");
+projects.at(-1).mediaTitles.push("Pic 3");
+projects.at(-1).mediaTitles.push("Pic 4");
+projects.at(-1).mediaTitles.push("Pic 5");
+projects.at(-1).mediaTitles.push("Pic 6");
+projects.at(-1).mediaTitles.push("Pic 7");
+
+
+
 
 projects.push(new project("WatBotics Robotic Hand"));//-----------------------------
 projects.at(-1).cover = "images/robot3.jpg";
@@ -795,15 +803,15 @@ const educationBox = document.createElement("div");
 educationBox.className = "educationBox";
 educationArea.appendChild(educationBox);
 
-const certificationContainer = documet.createElement("div");
+const certificationContainer = document.createElement("div");
 certificationContainer.className = "certificationContainer";
 educationArea.appendChild(certificationContainer);
 
-const solidWorksBox = documet.createElement("div");
+const solidWorksBox = document.createElement("div");
 certificationContainer.className = "certificationBox";
 certificationContainer.appendChild(solidWorksBox);
 
 
 
-
+changeDayNight();
 

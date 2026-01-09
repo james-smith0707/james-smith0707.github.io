@@ -479,11 +479,17 @@ class project
 
         }
 
+        this.projectBox.classList.remove("projectActive");
+        this.projectBox.classList.add("projectInactive");
+        this.projectBox.classList.add("projectDeactivateBuffer");
+
+
 
         setTimeout(() => {
-            this.projectBox.classList.remove("projectActive");
-        this.projectBox.classList.add("projectInactive");
-        }, 0);
+
+            this.projectBox.classList.remove("projectDeactivateBuffer");
+
+        }, 1000);
 
 
 

@@ -50,7 +50,6 @@
     --glow-colour-day: rgb(255, 225, 0);
     --glow-colour: var(--glow-colour-night);
 
-
 }
 
 
@@ -58,6 +57,7 @@ body {
     font-family: Arial, sans-serif;
     padding: 2rem;
     background-color: var(--background-colour);
+    transition-duration: 1s;
   }
 
 model-viewer {
@@ -651,6 +651,7 @@ color: var(--text1-colour);
     border-width: 10px;
     align-items: flex-start;    
     border: 5px solid var(--accent-colour-inactive);
+    background-color: var(--fill-colour-inactive);
     transition-duration: 1s;
     justify-content: left;
     position: relative;
@@ -790,20 +791,14 @@ color: var(--text1-colour);
 
 }
 
-.certificationContainer
+.certificationBox
 
 {
 
-    grid-area: certifications
-
-}
-
-.certificateBox
-
-{
-
+    grid-area: certifications;
     width: 100%; 
     height: auto; 
+    grid-template-areas: "title logo";
 
 }
 
@@ -811,10 +806,21 @@ color: var(--text1-colour);
 
 {
 
+    grid-area: logo;
     width: 20%;
     height: auto; 
     left: 15%;
     top: 50%;
+
+}
+
+.certificationTitle
+
+{
+
+    grid-area: title; 
+    font-size: 10px;
+    color: var(--text1-colour);
 
 }
 

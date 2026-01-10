@@ -34,7 +34,31 @@ class carousel
 
 }
 
+class certification
 
+{
+
+    constructor(name,image)
+
+    {
+
+        this.certificationBox = document.createElement("div");
+        this.certificationBox.className = "certificationBox";
+        educationBox.appendChild(this.certificationBox);
+
+        this.title = document.createElement("h1");
+        this.title.textContent = name; 
+        this.title.className = "certificationTitle";
+        this.certificationBox.appendChild(this.title);
+
+        this.logo = document.createElement("img");
+        this.logo.className = "certificationLogo";
+        this.logo.src = `images/${image}`;
+        this.certificationBox.appendChild(this.logo);
+        
+    }
+
+}
 
 class experience
 
@@ -498,6 +522,7 @@ class project
     rotateImage(direction)
 
     {        
+        direction = !direction;
 
         const oldImage = document.getElementById(`${this.name}-image${this.imageCarousel.pos()}`);
         oldImage.classList.remove("pictureFront");
@@ -624,7 +649,7 @@ const mainGrid = document.createElement("div");
 mainGrid.className = "projectContainer";
 document.body.appendChild(mainGrid);
 
-const mainBio = document.createElement("hi")
+const mainBio = document.createElement("h1")
 mainBio.className = "bio";
 mainBio.textContent = "Motivated Mechatronics Engineering Student at the University of Waterloo experienced in robotics, 3D modeling, and computer programming (java, python, C, C++, javascript)";
 mainGrid.appendChild(mainBio);
@@ -809,15 +834,10 @@ const educationBox = document.createElement("div");
 educationBox.className = "educationBox";
 educationArea.appendChild(educationBox);
 
-const certificationContainer = document.createElement("div");
-certificationContainer.className = "certificationContainer";
-educationArea.appendChild(certificationContainer);
-
-const solidWorksBox = document.createElement("div");
-certificationContainer.className = "certificationBox";
-certificationContainer.appendChild(solidWorksBox);
+certifications = [];
+certifications.push(new certification("cswa","robot1.jpg"));
 
 
 
-changeDayNight();
+
 

@@ -733,7 +733,7 @@ projects.at(-1).addImage("robot2.jpg");
 projects.at(-1).addImage("robot3.jpg");
 projects.at(-1).addImage("robot2.jpg");
 projects.at(-1).addModel("DownCam10.glb");
-projects.at(-1).addModel("DownCam10.glb");
+projects.at(-1).addModel("rocketCamTotal.glb");
 
 projects.at(-1).captions.push("Mounting Part for the Downward facing camer including machined componet as well as 3D printed shell portion");
 projects.at(-1).captions.push("Part for the Canard facing Camera including 3D printed shell");

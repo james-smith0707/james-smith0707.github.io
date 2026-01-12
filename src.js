@@ -132,8 +132,7 @@ class quickLink
     this.id = quickLink.counter;
     this.imageScale = 1;
     this.clickFuncton = null;
-    this.activeUrl = null;
-    this.inactiveUrl = null;}
+    this.imageUrl = null;}
 
 
     imageScale(imageScale)
@@ -157,7 +156,7 @@ class quickLink
 
         this.icon = document.createElement("img");
         this.icon.className = "linkImage";
-        this.icon.src = `images/${this.inactiveUrl}`;
+        this.icon.src = `images/${this.imageUrl}`;
         this.icon.style.gridArea = `link-${this.id}-pic`;
         this.icon.addEventListener("mouseover", () => this.activate());
         this.icon.addEventListener("mouseleave", () => this.deactivate());
@@ -172,7 +171,6 @@ class quickLink
 
         this.icon.classList.add("linkImageOpen");
         this.linkText.classList.remove("linkTextHidden");
-        this.icon.src = `images/${this.activeUrl}`;
 
 
     }
@@ -183,7 +181,14 @@ class quickLink
 
         this.icon.classList.remove("linkImageOpen");
         this.linkText.classList.add("linkTextHidden");
-        this.icon.src = `images/${this.inactiveUrl}`;
+
+    }
+
+    updateImage(imageUrl)
+
+    {
+
+        this.icon.src = `images/${imageUrl}`;
 
     }
 
@@ -618,6 +623,11 @@ function changeDayNight() {
     
         isDay = false;
 
+        links[0].updateImage("email-outline-night.svg");
+        links[1].updateImage("linkedin-logo-night.svg");
+
+
+
     } else {
 
         document.documentElement.style.setProperty("--background-colour", "var(--background-colour-day)");
@@ -637,6 +647,13 @@ function changeDayNight() {
         document.documentElement.style.setProperty("--highlight-colour", "var(--highlight-colour-day)");
     
         isDay = true;
+
+        links[0].updateImage("email-outline-day.svg");
+        links[1].updateImage("linkedin-logo-day.svg");
+
+
+
+
     }
     
 }
@@ -651,7 +668,8 @@ document.body.appendChild(mainGrid);
 
 const mainBio = document.createElement("h1")
 mainBio.className = "bio";
-mainBio.textContent = "Motivated Mechatronics Engineering Student at the University of Waterloo experienced in robotics, 3D modeling, and computer programming (java, python, C, C++, javascript)";
+mainBio.textContent = `Motivated Mechatronics Engineering Student at the University 
+of Waterloo experienced in robotics, 3D modeling, and computer programming (java, python, C, C++, javascript)`;
 mainGrid.appendChild(mainBio);
 
 const projectList = document.createElement("div");
@@ -697,8 +715,7 @@ mainGrid.appendChild(linkArea);
 let links = [];
 
 links.push(new quickLink("jamestsmith07@icloud.com"));
-links[0].activeUrl = "email-outline-active.svg";
-links[0].inactiveUrl = "email-outline-inactive.svg";
+links[0].imageUrl = "email-outline-night.svg";
 function emailMe()
 {window.location.href = "mailto:jamestsmith@icloud.com";};
 links[0].clickFunction = emailMe;
@@ -707,8 +724,7 @@ links.push(new quickLink("linkedin.james"));
 function linkedinConnect()
 {window.open("https://ca.linkedin.com/in/james-smith-07314926b", "_blank");}
 links[1].clickFunction = linkedinConnect;
-links[1].activeUrl = "linkedin-big-logo-active.svg";
-links[1].inactiveUrl = "linkedin-big-logo-inactive.svg";
+links[1].imageUrl = "linkedin-logo-night.svg";
 
 const projectsHeading = document.createElement("h1");
 projectsHeading.className = "sectionHeading";

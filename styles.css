@@ -2,7 +2,7 @@
 :root {
     
     --background-colour-night: #1a1c4a;
-    --background-colour-day: #cbe2c5;
+    --background-colour-day: #c5d4e2;
     --background-colour: var(--background-colour-night);
 
     --name-colour-night: #fafae4;
@@ -19,8 +19,8 @@
 
     --accent-colour-inactive-night: rgb(70, 30, 113);
     --accent-colour-active-night: rgb(128, 84, 158);
-    --accent-colour-inactive-day: rgb(29, 135, 80);
-    --accent-colour-active-day: rgb(40, 100, 38);
+    --accent-colour-inactive-day: rgb(29, 93, 135);
+    --accent-colour-active-day: rgb(23, 95, 147);
     --accent-colour-active: var(--accent-colour-active-night);
     --accent-colour-inactive: var(--accent-colour-inactive-night);
 
@@ -33,8 +33,8 @@
 
     --fill-colour-inactive-night: rgba(18, 6, 52, 0.119);
     --fill-colour-active-night: rgba(5, 5, 72, 0.542);
-    --fill-colour-inactive-day: rgba(234, 246, 146, 0.254);
-    --fill-colour-active-day: rgba(178, 223, 101, 0.75);
+    --fill-colour-inactive-day: rgba(202, 209, 241, 0.254);
+    --fill-colour-active-day: rgba(183, 219, 230, 0.692);
     --fill-colour-active: var(--fill-colour-active-night);
     --fill-colour-inactive: var(--fill-colour-inactive-night);
 

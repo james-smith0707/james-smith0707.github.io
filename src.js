@@ -854,6 +854,13 @@ certifications = [];
 certifications.push(new certification("cswa","robot1.jpg"));
 
 
+changeDayNight();
+
+
+
+
+
+
 
 
 

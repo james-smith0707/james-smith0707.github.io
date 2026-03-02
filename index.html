@@ -1,19 +1,279 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
-    <title>JAMES SMITH</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechatronics Portfolio | Advanced Blueprint</title>
+    
+    <style>
+        :root {
+            --bg-dark: #041221;
+            --grid-major: rgba(0, 242, 255, 0.2);
+            --grid-minor: rgba(0, 242, 255, 0.05);
+            --accent-cyan: #00f2ff;
+            --accent-gold: #ffcc00;
+            --text-main: #e0f7fa;
+            --font-mono: 'Courier New', monospace;
+            --transition-speed: 0.5s;
+        }
 
-    <script type="module"
-    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            scroll-snap-type: y mandatory;
+            overflow-x: hidden;
+        }
+
+        /* --- DYNAMIC BACKGROUND --- */
+        .background-engine {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a2a47 0%, var(--bg-dark) 80%);
+        }
+
+        .background-engine::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-major) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+                linear-gradient(var(--grid-minor) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        }
+
+        section {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: start;
+            border-bottom: 1px solid var(--grid-major);
+        }
+
+        /* --- HERO --- */
+        .hero-box {
+            background: rgba(5, 26, 43, 0.9);
+            padding: 50px;
+            border-left: 5px solid var(--accent-cyan);
+            border-right: 1px solid var(--accent-cyan);
+            text-align: center;
+            max-width: 800px;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-box h1 { font-size: 3.5rem; margin: 0; color: var(--accent-cyan); }
+
+        .btn {
+            text-decoration: none;
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            background: rgba(0, 242, 255, 0.05);
+            transition: 0.3s;
+            margin: 0 5px;
+            display: inline-block;
+        }
+
+        .btn:hover { background: var(--accent-cyan); color: var(--bg-dark); box-shadow: 0 0 15px var(--accent-cyan); }
+
+        /* --- ANIMATED CAROUSEL --- */
+        .project-grid {
+            display: flex;
+            width: 90%;
+            max-width: 1100px;
+            height: 65vh;
+            background: rgba(4, 18, 33, 0.95);
+            border: 1px solid var(--grid-major);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .carousel-view {
+            flex: 0 0 55%;
+            height: 100%;
+            position: relative;
+            background: #000;
+            border-right: 1px solid var(--grid-major);
+            overflow: hidden; /* Hide the slides that are out of bounds */
+        }
+
+        .slide-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #020810;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 26, 43, 0.9);
+            color: var(--accent-cyan);
+            padding: 12px 20px;
+            font-size: 0.7rem;
+            border-top: 1px solid var(--accent-cyan);
+            text-transform: uppercase;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent-cyan);
+            border: none;
+            padding: 25px 15px;
+            cursor: pointer;
+            z-index: 10;
+            transition: 0.3s;
+        }
+        .nav-arrow:hover { background: rgba(0, 242, 255, 0.3); }
+
+        .info-panel {
+            flex: 0 0 45%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-panel h2 { font-size: 2rem; color: var(--accent-cyan); margin-top: 0; border-bottom: 1px solid var(--grid-major); padding-bottom: 10px;}
+        .info-panel p { line-height: 1.6; font-size: 0.95rem; opacity: 0.8; }
+        .tech-stack { margin-top: 20px; font-size: 0.75rem; color: var(--accent-gold); font-weight: bold; }
+
+        section:nth-child(even) .project-grid { flex-direction: row-reverse; }
+        section:nth-child(even) .carousel-view { border-right: none; border-left: 1px solid var(--grid-major); }
+
+        @media (max-width: 850px) {
+            .project-grid { flex-direction: column !important; height: auto; }
+            .carousel-view, .info-panel { flex: 0 0 100%; }
+            .carousel-view { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-engine"></div>
+
+    <section>
+        <div class="hero-box">
+            <p style="color: var(--accent-gold); font-size: 0.8rem;">[ SYSTEM_STATUS: NOMINAL ]</p>
+            <h1>[Your Name]</h1>
+            <p>MECHATRONICS // DESIGN PORTFOLIO</p>
+            <div class="contact-bar">
+                <a href="images/resume.pdf" class="btn" target="_blank">RESUME.PDF</a>
+                <a href="mailto:email@example.com" class="btn">EMAIL</a>
+                <a href="https://linkedin.com" class="btn" target="_blank">LINKEDIN</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="p1">
+        <div class="project-grid">
+            <div class="carousel-view">
+                <button class="nav-arrow" style="left:0" onclick="moveSlideAnim('p1', -1)">&#10094;</button>
+                <button class="nav-arrow" style="right:0" onclick="moveSlideAnim('p1', 1)">&#10095;</button>
+                
+                <div class="slide-container" id="container-p1">
+                    <div class="slide">
+                        <img src="images/robot1.jpg">
+                        <div class="caption">DRW. No. 01.1 // CHASSIS_ISO</div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/robot2.jpg">
+                        <div class="caption">DRW. No. 01.2 // TOP_VIEW_SCHEMATIC</div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/robot3.jpg">
+                        <div class="caption">DRW. No. 01.3 // WIRING_HARNESS</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-panel">
+                <h2>01. ROVER_UNIT</h2>
+                <p>Autonomous navigation prototype using ultrasonic sensor fusion. Features a custom motor driver shield and real-time obstacle avoidance algorithms.</p>
+                <div class="tech-stack">MODULES: [ARDUINO] [C++] [PID_CONTROL]</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="p2">
+        <div class="project-grid">
+            <div class="carousel-view">
+                <button class="nav-arrow" style="left:0" onclick="moveSlideAnim('p2', -1)">&#10094;</button>
+                <button class="nav-arrow" style="right:0" onclick="moveSlideAnim('p2', 1)">&#10095;</button>
+                
+                <div class="slide-container" id="container-p2">
+                    <div class="slide">
+                        <img src="images/robot1.jpg">
+                        <div class="caption">DRW. No. 02.1 // KINEMATIC_RENDER</div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/robot2.jpg">
+                        <div class="caption">DRW. No. 02.2 // TOLERANCE_GRAPH</div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/robot3.jpg">
+                        <div class="caption">DRW. No. 02.3 // STRESS_ANALYSIS</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-panel">
+                <h2>02. GENEVA_DRIVE</h2>
+                <p>High-precision intermittent motion mechanism. Engineered to reduce mechanical shock during high-speed indexing.</p>
+                <div class="tech-stack">MODULES: [SOLIDWORKS] [FEA] [3D_PRINTING]</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Track indices for each project
+        const projectStates = {
+            p1: 0,
+            p2: 0
+        };
+
+        function moveSlideAnim(projectId, dir) {
+            const container = document.getElementById(`container-${projectId}`);
+            const totalSlides = container.children.length;
+            
+            // Update the index
+            projectStates[projectId] += dir;
+            
+            // Loop logic
+            if (projectStates[projectId] >= totalSlides) projectStates[projectId] = 0;
+            if (projectStates[projectId] < 0) projectStates[projectId] = totalSlides - 1;
+            
+            // Calculate the percentage to shift
+            const offset = projectStates[projectId] * -100;
+            
+            // Apply the CSS Transform
+            container.style.transform = `translateX(${offset}%)`;
+        }
     </script>
-
-    </head>
-
-    <body>
-
-        <script src="src.js"></script>
-
-    </body>
+</body>
+</html>

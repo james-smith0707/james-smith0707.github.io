@@ -1,372 +1,568 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JAMES SMITH</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Name — Mechatronics Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-    --bg-dark: #041221;
-    --grid-major: rgba(0, 242, 255, 0.25);
-    --accent-cyan: #00f2ff;
-    --accent-gold: #ffcc00;
-    --text-main: #e0f7fa;
-    --font-mono: 'Courier New', monospace;
-    --transition-speed: 0.5s;
-}
+  /* ============================================================
+     COLOR & TYPE TOKENS — edit these to restyle the whole site
+     ============================================================ */
+  :root{
+    --paper:      #F6F7F9;   /* page background */
+    --panel:      #FFFFFF;   /* card / panel background */
+    --ink:        #171B21;   /* primary text */
+    --ink-soft:   #565F6B;   /* secondary text */
+    --line:       #D8DCE1;   /* hairlines, borders, grid */
+    --line-soft:  #E6E9EC;   /* faint grid lines */
+    --accent:     #2A5FA5;   /* blueprint blue */
+    --accent-deep:#183E73;   /* blueprint blue, hover/dark */
+    --accent-tint:#E9F0F9;   /* pale blue for tags/badges */
+    --ok:         #2E7D5B;   /* used sparingly, e.g. "available" dot */
 
-* { box-sizing: border-box; }
+    --font-display: 'IBM Plex Sans', sans-serif;
+    --font-body:    'IBM Plex Sans', sans-serif;
+    --font-mono:    'IBM Plex Mono', monospace;
 
-html {
-    scroll-behavior: smooth;
-}
+    --radius: 3px;
+    --max-w: 1120px;
+  }
 
-body {
-    margin: 0;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: var(--font-mono);
-    scroll-snap-type: y mandatory;
-    overflow-x: hidden;
-}
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--accent-tint); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
 
-/* ============================= */
-/* SCHEMATIC BACKGROUND */
-/* ============================= */
+  .wrap{ max-width:var(--max-w); margin:0 auto; padding:0 28px; }
 
-.background-engine {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: radial-gradient(circle at center, #0a2a47 0%, var(--bg-dark) 75%);
-    overflow: hidden;
-}
+  /* ---------- utility: annotation label (the signature device) ---------- */
+  .tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  .section-marker{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:28px;
+  }
+  .section-marker .num{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--accent);
+    border:1px solid var(--accent);
+    border-radius:2px;
+    padding:2px 6px;
+    white-space:nowrap;
+  }
+  .section-marker .rule{
+    flex:1;
+    height:1px;
+    background:repeating-linear-gradient(to right, var(--line) 0, var(--line) 6px, transparent 6px, transparent 11px);
+  }
+  .section-marker h2{
+    margin:0;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:22px;
+    white-space:nowrap;
+  }
 
-/* Dot grid */
-.background-engine::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(var(--grid-major) 1px, transparent 1px);
-    background-size: 25px 25px;
-    opacity: 0.4;
-}
+  /* ---------- nav ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,247,249,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max-w); margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:var(--font-display); font-weight:700; font-size:17px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block; }
+  nav.links{ display:flex; align-items:center; gap:28px; }
+  nav.links a{
+    font-size:14px; color:var(--ink-soft); font-weight:500;
+    padding:6px 2px; border-bottom:2px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  nav.links a:hover, nav.links a.active{ color:var(--ink); border-color:var(--accent); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-body); font-weight:600; font-size:14px;
+    padding:9px 16px; border-radius:var(--radius);
+    border:1px solid var(--accent); color:var(--accent);
+    background:transparent; cursor:pointer;
+    transition:background .15s, color .15s;
+  }
+  .btn:hover{ background:var(--accent); color:#fff; }
+  .btn.solid{ background:var(--accent); color:#fff; }
+  .btn.solid:hover{ background:var(--accent-deep); border-color:var(--accent-deep); }
 
-/* Moving trace lines */
-.background-engine::after {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 88px;
     background-image:
-        linear-gradient(90deg, transparent 48%, rgba(0,242,255,0.08) 50%, transparent 52%),
-        linear-gradient(0deg, transparent 48%, rgba(0,242,255,0.05) 50%, transparent 52%);
-    background-size: 300px 300px;
-    animation: traceMove 60s linear infinite;
-    opacity: 0.25;
-}
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 28px 28px;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero::before{ /* corner crop marks, drafting-sheet feel */
+    content:"";
+    position:absolute; inset:24px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .hero-inner{ position:relative; max-width:var(--max-w); margin:0 auto; padding:0 28px; }
+  .hero .tag{ display:block; margin-bottom:18px; }
+  .hero h1{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(34px,5vw,54px); line-height:1.08; margin:0 0 18px;
+    max-width:760px;
+  }
+  .hero h1 span{ color:var(--accent); }
+  .hero p.lede{
+    font-size:18px; color:var(--ink-soft); max-width:560px; margin:0 0 32px;
+  }
+  .hero .cta-row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:44px; }
+  .hero .stats{ display:flex; gap:36px; flex-wrap:wrap; }
+  .hero .stat .n{ font-family:var(--font-mono); font-size:22px; color:var(--accent); }
+  .hero .stat .l{ font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; }
 
-@keyframes traceMove {
-    from { transform: translate(0,0); }
-    to { transform: translate(-300px,-300px); }
-}
+  /* ---------- generic section ---------- */
+  section{ padding:80px 0; }
+  section.alt{ background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
 
-/* ============================= */
-/* SECTIONS */
-/* ============================= */
+  /* ---------- project grid ---------- */
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+    transition:border-color .15s, transform .15s;
+  }
+  .card:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .card .thumb{
+    height:150px; background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:14px 14px; background-color:var(--accent-tint);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:12px; color:var(--accent);
+    border-bottom:1px solid var(--line);
+  }
+  .card .body{ padding:20px; flex:1; display:flex; flex-direction:column; }
+  .card .kicker{ font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
+  .card h3{ margin:0 0 8px; font-family:var(--font-display); font-size:17px; }
+  .card p{ margin:0 0 16px; font-size:14px; color:var(--ink-soft); flex:1; }
+  .chip-row{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+  .chip{
+    font-family:var(--font-mono); font-size:11px; padding:3px 8px;
+    background:var(--accent-tint); color:var(--accent-deep); border-radius:2px;
+  }
+  .card .link{ font-size:13px; font-weight:600; color:var(--accent); display:inline-flex; align-items:center; gap:6px; }
 
-section {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    scroll-snap-align: start;
-    border-bottom: 1px solid var(--grid-major);
-}
+  /* ---------- timeline (experience) ---------- */
+  .timeline{ border-left:1px solid var(--line); margin-left:8px; }
+  .t-item{ position:relative; padding:0 0 40px 32px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:""; position:absolute; left:-5px; top:4px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--accent);
+  }
+  .t-item .meta{ font-family:var(--font-mono); font-size:12px; color:var(--accent); margin-bottom:6px; }
+  .t-item h3{ margin:0 0 4px; font-family:var(--font-display); font-size:18px; }
+  .t-item .org{ font-size:14px; color:var(--ink-soft); margin-bottom:10px; }
+  .t-item p{ margin:0; font-size:14px; color:var(--ink-soft); max-width:640px; }
 
-/* ============================= */
-/* HERO */
-/* ============================= */
+  /* ---------- skills ---------- */
+  .skill-cols{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .skill-col h4{ font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); margin:0 0 12px; }
+  .skill-col ul{ list-style:none; margin:0; padding:0; font-size:14px; color:var(--ink-soft); }
+  .skill-col li{ padding:5px 0; border-bottom:1px solid var(--line-soft); }
 
-.hero-box {
-    background: rgba(5, 26, 43, 0.9);
-    padding: 50px;
-    border-left: 5px solid var(--accent-cyan);
-    border-right: 1px solid var(--accent-cyan);
-    text-align: center;
-    max-width: 800px;
-    backdrop-filter: blur(5px);
-    transition: 0.4s ease;
-}
+  /* ---------- about ---------- */
+  .about-layout{ display:grid; grid-template-columns:280px 1fr; gap:48px; align-items:start; }
+  .about-photo{
+    aspect-ratio:1; background:var(--accent-tint); border:1px solid var(--line); border-radius:var(--radius);
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:12px; color:var(--accent);
+  }
+  .about-text p{ color:var(--ink-soft); font-size:15px; }
 
-.hero-box:hover {
-    box-shadow: 0 0 40px rgba(0,242,255,0.2);
-}
+  /* ---------- contact / footer ---------- */
+  footer{
+    background:var(--ink); color:#EDEFF2; padding:64px 0 32px;
+  }
+  footer .wrap{ display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:40px; }
+  footer h3{ font-family:var(--font-display); font-size:20px; margin:0 0 12px; }
+  footer p{ color:#B7BEC8; font-size:14px; max-width:340px; }
+  footer .col h4{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#8B94A0; margin:0 0 14px; }
+  footer .col a, footer .col div{ display:block; font-size:14px; color:#D9DDE3; margin-bottom:10px; }
+  footer .col a:hover{ color:#fff; }
+  footer .bottom{ border-top:1px solid #2B313B; margin-top:40px; padding-top:20px; }
+  footer .bottom .wrap{ grid-template-columns:1fr; display:flex; justify-content:space-between; font-size:12px; color:#7C8492; font-family:var(--font-mono); }
 
-.hero-box h1 {
-    font-size: 3.5rem;
-    margin: 0;
-    color: var(--accent-cyan);
-}
+  /* ---------- page header (used on project / resume views) ---------- */
+  .page-header{
+    padding:56px 0 40px; border-bottom:1px solid var(--line);
+    background-image:linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:28px 28px;
+  }
+  .breadcrumb{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); margin-bottom:16px; }
+  .breadcrumb a{ color:var(--accent); }
+  .page-header h1{ font-family:var(--font-display); font-size:clamp(28px,4vw,40px); margin:0 0 10px; }
+  .page-header .sub{ color:var(--ink-soft); font-size:15px; }
 
-/* Buttons */
-.btn {
-    text-decoration: none;
-    color: var(--accent-cyan);
-    border: 1px solid var(--accent-cyan);
-    padding: 10px 20px;
-    font-size: 0.8rem;
-    background: rgba(0, 242, 255, 0.05);
-    transition: all 0.3s ease;
-    margin: 0 5px;
-    display: inline-block;
-    letter-spacing: 1px;
-}
+  .detail-grid{ display:grid; grid-template-columns:2fr 1fr; gap:48px; }
+  .detail-grid h2{ font-family:var(--font-display); font-size:19px; margin:36px 0 12px; }
+  .detail-grid h2:first-child{ margin-top:0; }
+  .detail-grid p{ color:var(--ink-soft); font-size:15px; }
+  .spec-box{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .spec-box .row{ display:flex; justify-content:space-between; font-size:13px; padding:9px 0; border-bottom:1px solid var(--line-soft); }
+  .spec-box .row span:first-child{ color:var(--ink-soft); font-family:var(--font-mono); font-size:12px; }
+  .spec-box .row span:last-child{ font-weight:600; text-align:right; }
+  .media-block{
+    height:280px; margin-bottom:8px;
+    background:linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:16px 16px; background-color:var(--accent-tint);
+    border:1px solid var(--line); border-radius:var(--radius);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:12px; color:var(--accent);
+  }
 
-.btn:hover {
-    background: var(--accent-cyan);
-    color: var(--bg-dark);
-    box-shadow: 0 0 20px var(--accent-cyan);
-    transform: translateY(-2px);
-}
+  /* ---------- resume view ---------- */
+  .resume-embed{
+    border:1px solid var(--line); border-radius:var(--radius); background:var(--panel);
+    height:70vh; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:14px; color:var(--ink-soft); font-size:14px;
+    text-align:center; padding:24px;
+  }
+  .resume-embed .tag{ margin-bottom:4px; }
 
-/* ============================= */
-/* PROJECT CARD */
-/* ============================= */
+  /* ---------- views ---------- */
+  .view{ display:none; }
+  .view.active{ display:block; }
 
-.project-grid {
-    display: flex;
-    width: 90%;
-    max-width: 1100px;
-    height: 65vh;
-    background: rgba(4, 18, 33, 0.95);
-    border: 1px solid var(--grid-major);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    overflow: hidden;
-    transition: all 0.4s ease;
-    position: relative;
-}
-
-.project-grid:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 
-        0 30px 60px rgba(0,0,0,0.6),
-        0 0 25px rgba(0,242,255,0.25);
-    border-color: var(--accent-cyan);
-}
-
-.project-grid::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0%;
-    background: var(--accent-cyan);
-    transition: width 0.4s ease;
-}
-
-.project-grid:hover::after {
-    width: 100%;
-}
-
-.carousel-view {
-    flex: 0 0 55%;
-    height: 100%;
-    position: relative;
-    background: #000;
-    border-right: 1px solid var(--grid-major);
-    overflow: hidden;
-}
-
-.slide-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide {
-    flex: 0 0 100%;
-    height: 100%;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background-color: #020810;
-}
-
-.caption {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: rgba(5, 26, 43, 0.9);
-    color: var(--accent-cyan);
-    padding: 12px 20px;
-    font-size: 0.7rem;
-    border-top: 1px solid var(--accent-cyan);
-    text-transform: uppercase;
-}
-
-/* Arrows */
-.nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 242, 255, 0.08);
-    color: var(--accent-cyan);
-    border: 1px solid var(--grid-major);
-    padding: 20px 12px;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-    font-size: 18px;
-}
-
-.nav-arrow:hover {
-    background: var(--accent-cyan);
-    color: var(--bg-dark);
-    box-shadow: 0 0 15px var(--accent-cyan);
-}
-
-/* Info panel */
-.info-panel {
-    flex: 0 0 45%;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.info-panel h2 {
-    font-size: 2rem;
-    color: var(--accent-cyan);
-    margin-top: 0;
-    border-bottom: 1px solid var(--grid-major);
-    padding-bottom: 10px;
-    transition: 0.4s ease;
-}
-
-.project-grid:hover .info-panel h2 {
-    color: var(--accent-gold);
-}
-
-.tech-stack {
-    margin-top: 20px;
-    font-size: 0.75rem;
-    color: var(--accent-gold);
-    font-weight: bold;
-    transition: 0.4s ease;
-}
-
-.project-grid:hover .tech-stack {
-    letter-spacing: 1px;
-}
-
-section:nth-child(even) .project-grid {
-    flex-direction: row-reverse;
-}
-
-section:nth-child(even) .carousel-view {
-    border-right: none;
-    border-left: 1px solid var(--grid-major);
-}
-
-/* Mobile */
-@media (max-width: 850px) {
-    .project-grid { flex-direction: column !important; height: auto; }
-    .carousel-view, .info-panel { flex: 0 0 100%; }
-    .carousel-view { height: 350px; }
-}
-
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    nav.links{ display:none; }
+    .grid-3{ grid-template-columns:1fr; }
+    .skill-cols{ grid-template-columns:repeat(2,1fr); }
+    .about-layout{ grid-template-columns:1fr; }
+    .detail-grid{ grid-template-columns:1fr; }
+    footer .wrap{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .card{ transition:none; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="background-engine"></div>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand"><span class="dot"></span>Your Name</a>
+    <nav class="links" id="navLinks">
+      <a href="#home" data-route="home">Home</a>
+      <a href="#home#projects" data-route="home">Projects</a>
+      <a href="#home#experience" data-route="home">Experience</a>
+      <a href="#resume" data-route="resume">Resume</a>
+      <a href="#home#contact" data-route="home">Contact</a>
+    </nav>
+    <a href="#resume" class="btn solid">View Résumé</a>
+  </div>
+</header>
 
-<!-- HERO -->
-<section>
-    <div class="hero-box">
-        <p style="color: var(--accent-gold); font-size: 0.8rem;">[ SYSTEM_STATUS: NOMINAL ]</p>
-        <h1>YOUR NAME</h1>
-        <p>MECHATRONICS // DESIGN PORTFOLIO</p>
-        <div>
-            <a href="images/resume.pdf" class="btn" target="_blank">RESUME.PDF</a>
-            <a href="mailto:email@example.com" class="btn">EMAIL</a>
-            <a href="https://linkedin.com" class="btn" target="_blank">LINKEDIN</a>
-        </div>
+<!-- ============================================================ -->
+<!-- HOME VIEW                                                     -->
+<!-- ============================================================ -->
+<main class="view active" id="view-home">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="tag">MECHATRONICS ENGINEERING · SEEKING SUMMER INTERNSHIP</span>
+      <h1>Building the link between <span>mechanical, electrical,</span> and code.</h1>
+      <p class="lede">
+        Placeholder intro — swap in a couple of sentences about what you build, the
+        kind of problems you like solving, and what you're looking for next.
+      </p>
+      <div class="cta-row">
+        <a href="#home#projects" class="btn solid">See Projects</a>
+        <a href="#resume" class="btn">Résumé</a>
+        <a href="#home#contact" class="btn">Contact</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">04</div><div class="l">Featured Projects</div></div>
+        <div class="stat"><div class="n">02</div><div class="l">Internships</div></div>
+        <div class="stat"><div class="n">01</div><div class="l">Design Team</div></div>
+        <div class="stat"><div class="n">3.x</div><div class="l">GPA (placeholder)</div></div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- PROJECT 1 -->
-<section id="p1">
-<div class="project-grid">
-<div class="carousel-view">
-<button class="nav-arrow" style="left:0" onclick="moveSlide('p1', -1)">&#10094;</button>
-<button class="nav-arrow" style="right:0" onclick="moveSlide('p1', 1)">&#10095;</button>
+  <section id="about">
+    <div class="wrap">
+      <div class="section-marker"><span class="num">FIG. 01</span><h2>About</h2><span class="rule"></span></div>
+      <div class="about-layout">
+        <div class="about-photo">PHOTO</div>
+        <div class="about-text">
+          <p>
+            Placeholder bio paragraph. Cover your school, expected graduation, and the
+            general area of mechatronics you gravitate toward (controls, robotics,
+            embedded systems, automation, etc.).
+          </p>
+          <p>
+            Second paragraph placeholder — mention design team involvement, what you're
+            currently learning, and what kind of internship role you're targeting.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="slide-container" id="container-p1">
-<div class="slide"><img src="images/robot1.jpg"></div>
-<div class="slide"><img src="images/robot2.jpg"></div>
-<div class="slide"><img src="images/robot3.jpg"></div>
-</div>
+  <section class="alt" id="projects">
+    <div class="wrap">
+      <div class="section-marker"><span class="num">FIG. 02</span><h2>Featured Projects</h2><span class="rule"></span></div>
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="thumb">PROJECT IMAGE / CAD RENDER</div>
+          <div class="body">
+            <div class="kicker">Design Team · Placeholder</div>
+            <h3>Project Title One</h3>
+            <p>One or two sentences describing the project, your role, and the outcome.</p>
+            <div class="chip-row"><span class="chip">SolidWorks</span><span class="chip">Controls</span></div>
+            <a href="#project-1" class="link">View project →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb">PROJECT IMAGE / CAD RENDER</div>
+          <div class="body">
+            <div class="kicker">Personal Project · Placeholder</div>
+            <h3>Project Title Two</h3>
+            <p>One or two sentences describing the project, your role, and the outcome.</p>
+            <div class="chip-row"><span class="chip">Arduino</span><span class="chip">C++</span></div>
+            <a href="#project-2" class="link">View project →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb">PROJECT IMAGE / CAD RENDER</div>
+          <div class="body">
+            <div class="kicker">Coursework · Placeholder</div>
+            <h3>Project Title Three</h3>
+            <p>One or two sentences describing the project, your role, and the outcome.</p>
+            <div class="chip-row"><span class="chip">MATLAB</span><span class="chip">PCB Design</span></div>
+            <a href="#project-3" class="link">View project →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-marker"><span class="num">FIG. 03</span><h2>Experience</h2><span class="rule"></span></div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="meta">SUMMER 20XX · 4 MONTHS</div>
+          <h3>Engineering Intern — Placeholder Company</h3>
+          <div class="org">Location · Team name</div>
+          <p>Placeholder description of what you worked on, tools used, and one measurable result.</p>
+        </div>
+        <div class="t-item">
+          <div class="meta">SUMMER 20XX · 3 MONTHS</div>
+          <h3>Engineering Intern — Placeholder Company</h3>
+          <div class="org">Location · Team name</div>
+          <p>Placeholder description of what you worked on, tools used, and one measurable result.</p>
+        </div>
+        <div class="t-item">
+          <div class="meta">20XX — PRESENT</div>
+          <h3>Subteam Lead — University Design Team</h3>
+          <div class="org">Team name · University</div>
+          <p>Placeholder description of your role on the design team and a highlight from a competition or build cycle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="skills">
+    <div class="wrap">
+      <div class="section-marker"><span class="num">FIG. 04</span><h2>Skills</h2><span class="rule"></span></div>
+      <div class="skill-cols">
+        <div class="skill-col">
+          <h4>CAD / Design</h4>
+          <ul><li>SolidWorks</li><li>Fusion 360</li><li>GD&amp;T</li></ul>
+        </div>
+        <div class="skill-col">
+          <h4>Programming</h4>
+          <ul><li>C / C++</li><li>Python</li><li>MATLAB</li></ul>
+        </div>
+        <div class="skill-col">
+          <h4>Electrical</h4>
+          <ul><li>PCB Design</li><li>Embedded Systems</li><li>Sensors &amp; Actuators</li></ul>
+        </div>
+        <div class="skill-col">
+          <h4>Tools</h4>
+          <ul><li>Git</li><li>ROS</li><li>3D Printing / CNC</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div>
+        <h3>Let's talk.</h3>
+        <p>Open to summer 20XX internship opportunities in mechatronics, robotics, and controls. Reach out any time.</p>
+      </div>
+      <div class="col">
+        <h4>Contact</h4>
+        <a href="mailto:you@email.com">you@email.com</a>
+        <a href="tel:+10000000000">+1 (000) 000-0000</a>
+        <div>City, Province</div>
+      </div>
+      <div class="col">
+        <h4>Elsewhere</h4>
+        <a href="#">LinkedIn ↗</a>
+        <a href="#">GitHub ↗</a>
+        <a href="#resume">Résumé (PDF) ↓</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="wrap">
+        <span>© 20XX Your Name</span>
+        <span>Built with care, one revision at a time.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- PROJECT DETAIL VIEW (template — reused for each project)      -->
+<!-- ============================================================ -->
+<div class="view" id="view-project">
+  <div class="page-header">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="#home#projects">Projects</a> / <span id="proj-kicker">Placeholder</span></div>
+      <h1 id="proj-title">Project Title</h1>
+      <p class="sub" id="proj-sub">One-line placeholder summary of the project and your role.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap detail-grid">
+      <div>
+        <div class="media-block">PRIMARY IMAGE / DIAGRAM</div>
+        <h2>Problem</h2>
+        <p>Placeholder — what need or challenge started this project.</p>
+        <h2>Approach</h2>
+        <p>Placeholder — the design/engineering process, key decisions, and any iteration.</p>
+        <h2>Result</h2>
+        <p>Placeholder — outcome, measurable impact, or what you'd do differently next time.</p>
+      </div>
+      <div>
+        <div class="spec-box">
+          <div class="row"><span>ROLE</span><span id="proj-role">—</span></div>
+          <div class="row"><span>TIMELINE</span><span id="proj-time">—</span></div>
+          <div class="row"><span>TEAM SIZE</span><span id="proj-team">—</span></div>
+          <div class="row"><span>TOOLS</span><span id="proj-tools">—</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
-<div class="info-panel">
-<h2>01. ROVER_UNIT</h2>
-<p>Autonomous navigation prototype using ultrasonic sensor fusion. Custom motor driver shield and real-time obstacle avoidance.</p>
-<div class="tech-stack">MODULES: [ARDUINO] [C++] [PID_CONTROL]</div>
+<!-- ============================================================ -->
+<!-- RESUME VIEW                                                   -->
+<!-- ============================================================ -->
+<div class="view" id="view-resume">
+  <div class="page-header">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="#home">Home</a> / Résumé</div>
+      <h1>Résumé</h1>
+      <p class="sub">Viewable below, or download the PDF.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap">
+      <div style="display:flex; justify-content:flex-end; gap:12px; margin-bottom:24px;">
+        <a href="#" class="btn solid">Download PDF</a>
+      </div>
+      <div class="resume-embed">
+        <span class="tag">RESUME.PDF</span>
+        <div>Drop your résumé PDF in here (an &lt;iframe&gt; or embedded viewer once the file is ready).</div>
+      </div>
+    </div>
+  </section>
 </div>
-</div>
-</section>
-
-<!-- PROJECT 2 -->
-<section id="p2">
-<div class="project-grid">
-<div class="carousel-view">
-<button class="nav-arrow" style="left:0" onclick="moveSlide('p2', -1)">&#10094;</button>
-<button class="nav-arrow" style="right:0" onclick="moveSlide('p2', 1)">&#10095;</button>
-
-<div class="slide-container" id="container-p2">
-<div class="slide"><img src="images/robot1.jpg"></div>
-<div class="slide"><img src="images/robot2.jpg"></div>
-<div class="slide"><img src="images/robot3.jpg"></div>
-</div>
-</div>
-
-<div class="info-panel">
-<h2>02. GENEVA_DRIVE</h2>
-<p>High-precision intermittent motion mechanism engineered to reduce mechanical shock during indexing.</p>
-<div class="tech-stack">MODULES: [SOLIDWORKS] [FEA] [3D_PRINTING]</div>
-</div>
-</div>
-</section>
 
 <script>
-const projectStates = { p1: 0, p2: 0 };
+  // ---- minimal hash router: shows one .view at a time ----
+  const projectData = {
+    "project-1": { kicker:"Design Team · Placeholder", title:"Project Title One", sub:"One or two sentence placeholder summary.", role:"—", time:"—", team:"—", tools:"—" },
+    "project-2": { kicker:"Personal Project · Placeholder", title:"Project Title Two", sub:"One or two sentence placeholder summary.", role:"—", time:"—", team:"—", tools:"—" },
+    "project-3": { kicker:"Coursework · Placeholder", title:"Project Title Three", sub:"One or two sentence placeholder summary.", role:"—", time:"—", team:"—", tools:"—" }
+  };
 
-function moveSlide(projectId, dir) {
-    const container = document.getElementById(`container-${projectId}`);
-    const totalSlides = container.children.length;
+  function route(){
+    const hash = window.location.hash.replace('#','') || 'home';
+    const isProject = hash.startsWith('project-');
+    let viewId = 'view-home';
+    if (isProject) viewId = 'view-project';
+    else if (hash.startsWith('resume')) viewId = 'view-resume';
 
-    projectStates[projectId] += dir;
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(viewId).classList.add('active');
 
-    if (projectStates[projectId] >= totalSlides) projectStates[projectId] = 0;
-    if (projectStates[projectId] < 0) projectStates[projectId] = totalSlides - 1;
+    if (isProject && projectData[hash]){
+      const d = projectData[hash];
+      document.getElementById('proj-kicker').textContent = d.kicker;
+      document.getElementById('proj-title').textContent = d.title;
+      document.getElementById('proj-sub').textContent = d.sub;
+      document.getElementById('proj-role').textContent = d.role;
+      document.getElementById('proj-time').textContent = d.time;
+      document.getElementById('proj-team').textContent = d.team;
+      document.getElementById('proj-tools').textContent = d.tools;
+    }
 
-    const offset = projectStates[projectId] * -100;
-    container.style.transform = `translateX(${offset}%)`;
-}
+    // nav active state
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.classList.toggle('active', a.dataset.route === viewId.replace('view-',''));
+    });
+
+    if (viewId !== 'view-home') window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('DOMContentLoaded', route);
 </script>
 
 </body>

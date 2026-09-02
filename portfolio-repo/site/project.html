@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header wrap">
+    <div class="brand">Your Name</div>
+    <nav>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <a class="back-link" href="index.html#work">&larr; All projects</a>
+
+    <div class="project-header" data-project-header>
+      <p style="color:#7C8894">Loading…</p>
+    </div>
+
+    <div class="project-body" data-project-body></div>
+  </main>
+
+  <footer class="site-footer wrap">
+    <span>&copy; <span id="year"></span></span>
+    <a href="index.html#work">&larr; Back to all projects</a>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+  <script src="js/model-viewer.js"></script>
+  <script src="js/render-project.js"></script>
+</body>
+</html>

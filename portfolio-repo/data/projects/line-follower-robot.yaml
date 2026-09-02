@@ -1,0 +1,73 @@
+# ============================================================
+# PROJECT DATA FILE — this is the ONLY file you edit to add/change
+# a project. Media lives in media/projects/<slug>/.
+# Run `python scripts/build.py` after editing to regenerate the
+# website JSON and the LaTeX portfolio section.
+# ============================================================
+
+slug: line-follower-robot
+title: "Autonomous Line-Following Robot"
+subtitle: "PID-tuned mobile robot with adaptive speed control"
+dates: "Jan 2026 – Mar 2026"
+tags: ["Embedded Systems", "Control Theory", "PCB Design"]
+tools: ["STM32", "KiCad", "C", "MATLAB"]
+
+short_description: >
+  A two-wheeled autonomous robot that follows a taped track using an
+  IR sensor array and a tuned PID control loop, holding speed through
+  sharp corners without losing the line.
+
+skills_demonstrated:
+  - "PID control tuning"
+  - "PCB layout and fabrication"
+  - "Embedded C firmware"
+  - "Sensor array calibration"
+
+links:
+  github: "https://github.com/yourusername/line-follower-robot"
+  demo: "https://youtube.com/watch?v=example"
+
+# Main media shown directly under the title/subtitle, before any blocks.
+main_media:
+  type: image
+  src: "media/projects/line-follower-robot/cover.jpg"
+  title: "Final chassis, top view"
+  caption: "Custom PCB mounted above the IR sensor array and drive motors."
+
+# ------------------------------------------------------------
+# BLOCKS — rendered in this exact order on the site and in the
+# LaTeX portfolio. Reorder, add, or remove freely. Supported
+# types: text | photo | gallery | video | stl
+# ------------------------------------------------------------
+blocks:
+  - type: gallery
+    title: "Build process"
+    items:
+      - src: "media/projects/line-follower-robot/build-1.jpg"
+        title: "Bare PCB"
+        caption: "First revision board fresh off the mill."
+      - src: "media/projects/line-follower-robot/build-2.jpg"
+        title: "Populated board"
+        caption: "Sensor array and motor drivers soldered in."
+      - src: "media/projects/line-follower-robot/build-3.jpg"
+        title: "Chassis assembly"
+        caption: "3D-printed chassis with motors mounted."
+
+  - type: text
+    content: >
+      The first revision used a fixed-gain proportional controller,
+      which oscillated badly on tight corners. Moving to a full PID
+      loop with gain scheduling based on error magnitude let the
+      robot hold near-top speed on straights while slowing smoothly
+      into turns.
+
+  - type: photo
+    src: "media/projects/line-follower-robot/pid-tuning.jpg"
+    title: "Tuning session"
+    caption: "Logging sensor error against wheel speed to hand-tune PID gains."
+
+  - type: text
+    content: >
+      Final lap times improved by 38% over the proportional-only
+      version, with zero track departures across 20 consecutive
+      test laps.

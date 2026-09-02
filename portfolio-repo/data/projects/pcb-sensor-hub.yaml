@@ -1,0 +1,51 @@
+slug: pcb-sensor-hub
+title: "Modular PCB Sensor Hub"
+subtitle: "Stackable environmental sensor boards over I2C"
+dates: "May 2025 – Jul 2025"
+tags: ["PCB Design", "Firmware", "IoT"]
+tools: ["Altium Designer", "STM32", "I2C"]
+
+short_description: >
+  A stackable sensor board system where each board adds one
+  environmental sensor over a shared I2C bus, letting a project
+  mix and match temperature, humidity, and air-quality sensing
+  without redesigning the base board.
+
+skills_demonstrated:
+  - "Multi-board PCB stack design"
+  - "I2C bus arbitration"
+  - "Low-power firmware design"
+
+links:
+  github: "https://github.com/yourusername/pcb-sensor-hub"
+
+main_media:
+  type: image
+  src: "media/projects/pcb-sensor-hub/cover.jpg"
+  title: "Three-board stack"
+  caption: "Base board with humidity and air-quality daughter boards attached."
+
+blocks:
+  - type: text
+    content: >
+      Each daughter board carries a unique I2C address set by a
+      resistor-strapped address pin, so boards can be stacked in
+      any order and combination without firmware changes on the base.
+
+  - type: gallery
+    title: "Individual boards"
+    items:
+      - src: "media/projects/pcb-sensor-hub/board-temp.jpg"
+        title: "Temperature board"
+        caption: "Single-sensor board, smallest form factor in the stack."
+      - src: "media/projects/pcb-sensor-hub/board-humidity.jpg"
+        title: "Humidity board"
+        caption: "Includes onboard heater trace for condensation prevention."
+      - src: "media/projects/pcb-sensor-hub/board-airquality.jpg"
+        title: "Air quality board"
+        caption: "VOC sensor with dedicated shielding to reduce PCB heat coupling."
+
+  - type: photo
+    src: "media/projects/pcb-sensor-hub/stack-schematic.png"
+    title: "Bus topology"
+    caption: "Shared I2C bus routed through the board-to-board stacking connector."

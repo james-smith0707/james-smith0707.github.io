@@ -1,0 +1,200 @@
+[
+  {
+    "slug": "line-follower-robot",
+    "title": "Autonomous Line-Following Robot",
+    "subtitle": "PID-tuned mobile robot with adaptive speed control",
+    "dates": "Jan 2026 \u2013 Mar 2026",
+    "tags": [
+      "Embedded Systems",
+      "Control Theory",
+      "PCB Design"
+    ],
+    "tools": [
+      "STM32",
+      "KiCad",
+      "C",
+      "MATLAB"
+    ],
+    "short_description": "A two-wheeled autonomous robot that follows a taped track using an IR sensor array and a tuned PID control loop, holding speed through sharp corners without losing the line.\n",
+    "skills_demonstrated": [
+      "PID control tuning",
+      "PCB layout and fabrication",
+      "Embedded C firmware",
+      "Sensor array calibration"
+    ],
+    "links": {
+      "github": "https://github.com/yourusername/line-follower-robot",
+      "demo": "https://youtube.com/watch?v=example"
+    },
+    "main_media": {
+      "type": "image",
+      "src": "media/projects/line-follower-robot/cover.jpg",
+      "title": "Final chassis, top view",
+      "caption": "Custom PCB mounted above the IR sensor array and drive motors."
+    },
+    "blocks": [
+      {
+        "type": "gallery",
+        "title": "Build process",
+        "items": [
+          {
+            "src": "media/projects/line-follower-robot/build-1.jpg",
+            "title": "Bare PCB",
+            "caption": "First revision board fresh off the mill."
+          },
+          {
+            "src": "media/projects/line-follower-robot/build-2.jpg",
+            "title": "Populated board",
+            "caption": "Sensor array and motor drivers soldered in."
+          },
+          {
+            "src": "media/projects/line-follower-robot/build-3.jpg",
+            "title": "Chassis assembly",
+            "caption": "3D-printed chassis with motors mounted."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "content": "The first revision used a fixed-gain proportional controller, which oscillated badly on tight corners. Moving to a full PID loop with gain scheduling based on error magnitude let the robot hold near-top speed on straights while slowing smoothly into turns.\n"
+      },
+      {
+        "type": "photo",
+        "src": "media/projects/line-follower-robot/pid-tuning.jpg",
+        "title": "Tuning session",
+        "caption": "Logging sensor error against wheel speed to hand-tune PID gains."
+      },
+      {
+        "type": "text",
+        "content": "Final lap times improved by 38% over the proportional-only version, with zero track departures across 20 consecutive test laps.\n"
+      }
+    ]
+  },
+  {
+    "slug": "pcb-sensor-hub",
+    "title": "Modular PCB Sensor Hub",
+    "subtitle": "Stackable environmental sensor boards over I2C",
+    "dates": "May 2025 \u2013 Jul 2025",
+    "tags": [
+      "PCB Design",
+      "Firmware",
+      "IoT"
+    ],
+    "tools": [
+      "Altium Designer",
+      "STM32",
+      "I2C"
+    ],
+    "short_description": "A stackable sensor board system where each board adds one environmental sensor over a shared I2C bus, letting a project mix and match temperature, humidity, and air-quality sensing without redesigning the base board.\n",
+    "skills_demonstrated": [
+      "Multi-board PCB stack design",
+      "I2C bus arbitration",
+      "Low-power firmware design"
+    ],
+    "links": {
+      "github": "https://github.com/yourusername/pcb-sensor-hub"
+    },
+    "main_media": {
+      "type": "image",
+      "src": "media/projects/pcb-sensor-hub/cover.jpg",
+      "title": "Three-board stack",
+      "caption": "Base board with humidity and air-quality daughter boards attached."
+    },
+    "blocks": [
+      {
+        "type": "text",
+        "content": "Each daughter board carries a unique I2C address set by a resistor-strapped address pin, so boards can be stacked in any order and combination without firmware changes on the base.\n"
+      },
+      {
+        "type": "gallery",
+        "title": "Individual boards",
+        "items": [
+          {
+            "src": "media/projects/pcb-sensor-hub/board-temp.jpg",
+            "title": "Temperature board",
+            "caption": "Single-sensor board, smallest form factor in the stack."
+          },
+          {
+            "src": "media/projects/pcb-sensor-hub/board-humidity.jpg",
+            "title": "Humidity board",
+            "caption": "Includes onboard heater trace for condensation prevention."
+          },
+          {
+            "src": "media/projects/pcb-sensor-hub/board-airquality.jpg",
+            "title": "Air quality board",
+            "caption": "VOC sensor with dedicated shielding to reduce PCB heat coupling."
+          }
+        ]
+      },
+      {
+        "type": "photo",
+        "src": "media/projects/pcb-sensor-hub/stack-schematic.png",
+        "title": "Bus topology",
+        "caption": "Shared I2C bus routed through the board-to-board stacking connector."
+      }
+    ]
+  },
+  {
+    "slug": "robotic-arm",
+    "title": "3-DOF Desktop Robotic Arm",
+    "subtitle": "Inverse-kinematics-driven pick-and-place arm",
+    "dates": "Sep 2025 \u2013 Dec 2025",
+    "tags": [
+      "Robotics",
+      "CAD",
+      "Kinematics"
+    ],
+    "tools": [
+      "SolidWorks",
+      "Arduino",
+      "Python"
+    ],
+    "short_description": "A three-degree-of-freedom robotic arm with a custom inverse kinematics solver, designed and 3D-printed from scratch for a desktop pick-and-place demo.\n",
+    "skills_demonstrated": [
+      "Inverse kinematics derivation",
+      "Parametric CAD modeling",
+      "Servo control and calibration"
+    ],
+    "links": {
+      "github": "https://github.com/yourusername/robotic-arm"
+    },
+    "main_media": {
+      "type": "image",
+      "src": "media/projects/robotic-arm/cover.jpg",
+      "title": "Assembled arm",
+      "caption": "Full assembly with gripper attachment at rest position."
+    },
+    "blocks": [
+      {
+        "type": "photo",
+        "src": "media/projects/robotic-arm/cad-overview.png",
+        "title": "CAD overview",
+        "caption": "Full linkage assembly modeled before any printing began."
+      },
+      {
+        "type": "text",
+        "content": "Rather than use a lookup table, I derived closed-form inverse kinematics for the 3-link planar arm so any target (x, y) within the workspace maps directly to joint angles \u2014 no iterative solving needed on the microcontroller.\n"
+      },
+      {
+        "type": "stl",
+        "src": "media/projects/robotic-arm/gripper-jaw.stl",
+        "title": "Gripper jaw (interactive)",
+        "caption": "Drag to rotate \u2014 this is the actual print file for the final jaw geometry.",
+        "autorotate": true,
+        "pdf_fallback": "media/projects/robotic-arm/gripper-jaw-render.png"
+      },
+      {
+        "type": "text",
+        "content": "The gripper jaw went through four print iterations to get enough compliance to grip irregular objects without a force sensor, using a living-hinge geometry at the jaw base.\n"
+      },
+      {
+        "type": "video",
+        "src": "media/projects/robotic-arm/pick-and-place-demo.mp4",
+        "poster": "media/projects/robotic-arm/pick-and-place-poster.jpg",
+        "title": "Pick-and-place demo",
+        "caption": "Arm sorting objects by color using a webcam and OpenCV.",
+        "pdf_fallback": "media/projects/robotic-arm/pick-and-place-poster.jpg"
+      }
+    ]
+  }
+]

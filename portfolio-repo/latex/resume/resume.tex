@@ -1,0 +1,71 @@
+% resume.tex
+% ATS-friendly: single column, standard section headings, no tables/graphics
+% in the body (the portfolio document is where visuals live, not this).
+\documentclass[10.5pt]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{../shared/theme}      % colors/fonts, generated from data/theme.yaml
+\input{../shared/title.tex}       % \myName, \myEmail, etc. — generated from data/title.yaml
+
+\hypersetup{colorlinks=true, urlcolor=blueprint500, linkcolor=blueprint500}
+\pagestyle{empty}
+\setlist[itemize]{leftmargin=1.1em, itemsep=1pt, topsep=2pt}
+
+\titleformat{\section}{\displayfont\bfseries\large\color{graphite900}}{}{0em}{}[{\color{blueprint500}\titlerule[0.8pt]}]
+\titlespacing{\section}{0pt}{10pt}{6pt}
+
+\begin{document}
+
+% ---- header ----
+\begin{center}
+  {\displayfont\bfseries\LARGE \myName}\\[2pt]
+  {\color{steel700} \myTagline}\\[4pt]
+  \small \myLocation\ \textbar\ \myEmail\ \textbar\ \myPhone\ \textbar\
+  \href{\myGithub}{GitHub} \textbar\ \href{\myLinkedin}{LinkedIn}
+\end{center}
+
+\section*{Education}
+% Placeholder — replace with your program, school, expected graduation, GPA if strong.
+\textbf{Program Name}, University Name \hfill Expected Month Year \\
+Relevant coursework: Course A, Course B, Course C
+
+\section*{Technical Skills}
+% Keep this ATS-scannable: plain comma-separated lists, no icons/graphics.
+\textbf{Languages:} C, C++, Python, MATLAB \\
+\textbf{Tools:} SolidWorks, KiCad, Git, ROS \\
+\textbf{Areas:} Embedded systems, control theory, PCB design, CAD
+
+\section*{Experience}
+% Placeholder internship entry — mirror data/internships.yaml content here,
+% but keep resume wording tight (1-2 lines per bullet) since this is the
+% ATS-scannable document; the LaTeX portfolio doc carries the full story.
+\textbf{Mechatronics Intern}, Example Robotics Co. \hfill May 2025 -- Aug 2025
+\begin{itemize}
+  \item Designed and validated a vision-guided pick-and-place fixture, cutting cycle time by 12\%.
+  \item Reduced manual changeover steps from 6 to 2 through fixture redesign.
+\end{itemize}
+
+\section*{Projects}
+% Placeholder — mirror your top 2-3 data/projects/*.yaml entries, resume-length.
+\textbf{Autonomous Line-Following Robot} \hfill Jan 2026 -- Mar 2026
+\begin{itemize}
+  \item Designed a PID-controlled line-following robot with gain scheduling, improving lap times 38\%.
+  \item Fabricated and populated a custom PCB for the sensor array and motor drivers.
+\end{itemize}
+\vspace{4pt}
+\textbf{3-DOF Desktop Robotic Arm} \hfill Sep 2025 -- Dec 2025
+\begin{itemize}
+  \item Derived closed-form inverse kinematics for a 3-link planar arm.
+  \item Iterated a compliant 3D-printed gripper jaw through four print revisions.
+\end{itemize}
+
+\section*{Leadership \& Activities}
+\textbf{Formula SAE — Electronics Lead} \hfill Sep 2025 -- Present
+\begin{itemize}
+  \item Lead a 4-person subteam designing the car's CAN bus telemetry network.
+\end{itemize}
+
+\end{document}

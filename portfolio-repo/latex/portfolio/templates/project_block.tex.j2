@@ -1,0 +1,36 @@
+((* set tags_str = p.get('tags', []) | join(', ') *))
+((* set tools_str = p.get('tools', []) | join(', ') *))
+\projectOpen{(((p.title|tex)))}{(((p.get('subtitle','')|tex)))}{(((p.get('dates','')|tex)))}{(((tags_str|tex)))}{(((tools_str|tex)))}
+
+\projectSummary{(((p.short_description|tex)))}
+
+((* if p.main_media *))
+\projectPhoto{(((p.main_media.src)))}{(((p.main_media.get('title','')|tex)))}{(((p.main_media.get('caption','')|tex)))}
+((* endif *))
+
+((* for block in p.get('blocks', []) *))
+((* if block.type == 'text' *))
+\projectText{(((block.content|trim|tex)))}
+
+((* elif block.type == 'photo' *))
+\projectPhoto{(((block.src)))}{(((block.get('title','')|tex)))}{(((block.get('caption','')|tex)))}
+
+((* elif block.type == 'gallery' *))
+\begin{projectGallery}{(((block.get('title','')|tex)))}
+((* for item in block['items'] *))
+\projectGalleryItem{(((item.src)))}{(((item.get('title','')|tex)))}{(((item.get('caption','')|tex)))}{0.31}
+((* endfor *))
+\end{projectGallery}
+
+((* elif block.type == 'video' *))
+((* set fallback = block.get('pdf_fallback') or block.get('poster','') *))
+\projectInteractiveFallback{(((fallback)))}{(((block.get('title','')|tex)))}{(((block.get('caption','')|tex)))}{VIDEO}
+
+((* elif block.type == 'stl' *))
+((* set fallback = block.get('pdf_fallback', '') *))
+\projectInteractiveFallback{(((fallback)))}{(((block.get('title','')|tex)))}{(((block.get('caption','')|tex)))}{3D MODEL}
+
+((* endif *))
+((* endfor *))
+
+\projectClose

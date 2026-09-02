@@ -1,0 +1,13 @@
+# LaTeX build artifacts (keep the .tex and the final .pdf, ignore the rest)
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+missfont.log
+
+# OS
+.DS_Store
+Thumbs.db

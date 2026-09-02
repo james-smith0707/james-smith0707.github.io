@@ -1,0 +1,22 @@
+# ============================================================
+# Your name and contact info — single source of truth.
+# Used by:
+#   site/index.html header/footer   (via site/data/title.json)
+#   latex/resume/resume.tex          header
+#   latex/portfolio/portfolio.tex    header
+# Edit here, run scripts/build.py, everything updates.
+# ============================================================
+
+name: "James Smith"
+tagline: "Mechatronics Engineering Student at the University of waterloo"
+location: "Toronto, ON"
+
+email: "you@example.com"
+#phone: "+1 (555) 555-5555"
+
+links:
+  github: "https://github.com/yourusername"
+  linkedin: "https://linkedin.com/in/yourusername"
+  website: "https://yourusername.github.io"
+
+resume_pdf: "resume.pdf"   # path the site's "download resume" button links to

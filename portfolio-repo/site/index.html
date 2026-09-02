@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="site-header wrap">
+    <div class="brand">Your Name</div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <section class="hero">
+      <div>
+        <h1 data-hero-name>Loading…</h1>
+        <p class="tagline" data-hero-tagline></p>
+        <p class="lede" data-hero-lede></p>
+        <div class="hero-links" data-hero-links></div>
+      </div>
+      <div class="hero-model" data-model-src="media/hero.stl">
+        <div class="model-caption">DRAG TO ROTATE — REPLACE media/hero.stl WITH YOUR OWN PART</div>
+      </div>
+    </section>
+
+    <div class="dim-rule"></div>
+
+    <section id="work">
+      <h2 class="section-heading">SELECTED PROJECTS</h2>
+      <div class="project-grid" data-project-grid>
+        <p style="color:#7C8894">Loading projects…</p>
+      </div>
+    </section>
+
+    <div class="dim-rule"></div>
+
+    <section id="about">
+      <h2 class="section-heading">ABOUT</h2>
+      <p style="max-width:68ch">
+        Placeholder about text — replace with your own background, interests,
+        and what you're looking for in an internship. Keep this to a short
+        paragraph or two; the projects should carry most of the weight.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer wrap">
+    <span>&copy; <span id="year"></span></span>
+    <span>Built with a data-driven, single-source-of-truth pipeline — see /README.md</span>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <!-- three.js + STLLoader for the rotating model hero -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+  <script src="js/model-viewer.js"></script>
+  <script src="js/load-projects.js"></script>
+</body>
+</html>

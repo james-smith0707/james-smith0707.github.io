@@ -1,0 +1,103 @@
+% portfolio-macros.sty
+% Hand-maintained (NOT auto-generated). Defines the LaTeX commands that
+% latex/portfolio/templates/*.tex.j2 render into. If you add a new block
+% type on the website, add its matching macro here.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{portfolio-macros}
+
+\RequirePackage{theme}
+\RequirePackage{graphicx}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage[skip=4pt]{caption}
+\RequirePackage{enumitem}
+\RequirePackage{hyperref}
+\RequirePackage{etoolbox}
+
+% ---- project title block -------------------------------------------
+% Mimics an engineering drawing's title block: a small metadata table
+% instead of a plain heading + subheading.
+\newcommand{\projectOpen}[5]{%
+  % #1 title  #2 subtitle  #3 dates  #4 tags (comma list)  #5 tools (comma list)
+  \vspace{1.2em}
+  {\displayfont\bfseries\Large #1}\\[2pt]
+  {\color{steel700}\itshape #2}\\[6pt]
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}>{\monofont\footnotesize\color{steel700}}l X@{}}
+    DATES & #3 \\
+    \ifblank{#4}{}{TAGS  & #4 \\}
+    \ifblank{#5}{}{TOOLS & #5 \\}
+  \end{tabularx}
+  \vspace{0.6em}
+  {\color{blueprint500}\hrule height 0.6pt}
+  \vspace{0.8em}
+}
+\newcommand{\projectClose}{\vspace{1.4em}}
+
+% ---- simple entry (design team / internships) — same visual language,
+% but labels the org row correctly instead of misusing TAGS ----
+\newcommand{\entryOpen}[4]{%
+  % #1 title  #2 subtitle  #3 dates  #4 org
+  \vspace{1.2em}
+  {\displayfont\bfseries\Large #1}\\[2pt]
+  {\color{steel700}\itshape #2}\\[6pt]
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}>{\monofont\footnotesize\color{steel700}}l X@{}}
+    DATES & #3 \\
+    \ifblank{#4}{}{ORG   & #4 \\}
+  \end{tabularx}
+  \vspace{0.6em}
+  {\color{blueprint500}\hrule height 0.6pt}
+  \vspace{0.8em}
+}
+
+\newcommand{\projectSummary}[1]{%
+  \noindent #1\par\vspace{0.8em}
+}
+
+% ---- block: text -----------------------------------------------------
+\newcommand{\projectText}[1]{%
+  \noindent #1\par\vspace{0.8em}
+}
+
+% ---- block: photo -----------------------------------------------------
+% #1 image path  #2 title  #3 caption
+\newcommand{\projectPhoto}[3]{%
+  \begin{center}
+    \includegraphics[width=0.85\linewidth]{#1}\\[2pt]
+    {\monofont\footnotesize\color{blueprint500} #2}\\
+    {\footnotesize\color{steel700} #3}
+  \end{center}
+  \vspace{0.8em}
+}
+
+% ---- block: gallery ----------------------------------------------------
+% Opens/closes a row; place \projectGalleryItem calls between.
+\newenvironment{projectGallery}[1]{%
+  {\monofont\footnotesize\color{blueprint500} #1}\\[4pt]
+  \noindent
+}{%
+  \vspace{0.8em}
+}
+% #1 image path  #2 title  #3 caption  #4 fractional width (e.g. 0.31)
+\newcommand{\projectGalleryItem}[4]{%
+  \begin{minipage}[t]{#4\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{#1}\\[2pt]
+    {\monofont\tiny\color{blueprint500} #2}\\
+    {\tiny\color{steel700} #3}
+  \end{minipage}\hfill
+}
+
+% ---- block: video / stl (both are interactive on the site; the PDF
+% shows a fallback still frame with a pointer to the live version) ----
+% #1 fallback image  #2 title  #3 caption  #4 kind label ("VIDEO" / "3D MODEL")
+\newcommand{\projectInteractiveFallback}[4]{%
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{#1}\\[2pt]
+    {\monofont\footnotesize\color{signalamber} [#4 — VIEW INTERACTIVE ON SITE]}\\
+    {\monofont\footnotesize\color{blueprint500} #2}\\
+    {\footnotesize\color{steel700} #3}
+  \end{center}
+  \vspace{0.8em}
+}

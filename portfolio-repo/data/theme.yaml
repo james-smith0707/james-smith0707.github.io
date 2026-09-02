@@ -1,0 +1,39 @@
+# ============================================================
+# Single source of truth for visual theme.
+# build.py reads this and generates:
+#   site/css/theme-vars.css   (CSS custom properties)
+#   latex/shared/theme.sty    (xcolor + font setup)
+# Change a value here, run scripts/build.py, both outputs update.
+# ============================================================
+
+colors:
+  graphite-900: "#1C1F22"   # near-black, blue-tinted — primary text / dark surfaces
+  steel-700:    "#3D4650"   # secondary text, dividers on dark
+  slate-400:    "#7C8894"   # muted text, captions
+  fog-100:      "#EDEFF1"   # light neutral background
+  paper:        "#FFFFFF"   # cards / panels on light background
+  blueprint-500: "#235789"  # single accent — links, active states, title-block rules
+  signal-amber:  "#D98E3B"  # sparse use only — CTA / current-state highlight
+
+fonts:
+  display:
+    family: "Archivo"
+    weights: [600, 700]
+    google_fonts_id: "Archivo:wght@600;700"
+  body:
+    family: "IBM Plex Sans"
+    weights: [400, 500, 600]
+    google_fonts_id: "IBM+Plex+Sans:wght@400;500;600"
+  mono:
+    family: "IBM Plex Mono"
+    weights: [400, 500]
+    google_fonts_id: "IBM+Plex+Mono:wght@400;500"
+    usage: "title-block labels, tags, code, data"
+
+layout:
+  content_max_width: "1100px"
+  grid_unit: "8px"
+  divider_style: "dimension-line"   # thin rule with small tick marks at each end
+
+radius:
+  base: "2px"    # deliberately near-square — drafting-tool feel, not SaaS rounded cards

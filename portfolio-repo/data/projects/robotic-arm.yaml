@@ -1,0 +1,58 @@
+slug: robotic-arm
+title: "3-DOF Desktop Robotic Arm"
+subtitle: "Inverse-kinematics-driven pick-and-place arm"
+dates: "Sep 2025 – Dec 2025"
+tags: ["Robotics", "CAD", "Kinematics"]
+tools: ["SolidWorks", "Arduino", "Python"]
+
+short_description: >
+  A three-degree-of-freedom robotic arm with a custom inverse
+  kinematics solver, designed and 3D-printed from scratch for a
+  desktop pick-and-place demo.
+
+skills_demonstrated:
+  - "Inverse kinematics derivation"
+  - "Parametric CAD modeling"
+  - "Servo control and calibration"
+
+links:
+  github: "https://github.com/yourusername/robotic-arm"
+
+main_media:
+  type: image
+  src: "media/projects/robotic-arm/cover.jpg"
+  title: "Assembled arm"
+  caption: "Full assembly with gripper attachment at rest position."
+
+blocks:
+  - type: photo
+    src: "media/projects/robotic-arm/cad-overview.png"
+    title: "CAD overview"
+    caption: "Full linkage assembly modeled before any printing began."
+
+  - type: text
+    content: >
+      Rather than use a lookup table, I derived closed-form inverse
+      kinematics for the 3-link planar arm so any target (x, y)
+      within the workspace maps directly to joint angles — no
+      iterative solving needed on the microcontroller.
+
+  - type: stl
+    src: "media/projects/robotic-arm/gripper-jaw.stl"
+    title: "Gripper jaw (interactive)"
+    caption: "Drag to rotate — this is the actual print file for the final jaw geometry."
+    autorotate: true
+    pdf_fallback: "media/projects/robotic-arm/gripper-jaw-render.png"
+
+  - type: text
+    content: >
+      The gripper jaw went through four print iterations to get
+      enough compliance to grip irregular objects without a force
+      sensor, using a living-hinge geometry at the jaw base.
+
+  - type: video
+    src: "media/projects/robotic-arm/pick-and-place-demo.mp4"
+    poster: "media/projects/robotic-arm/pick-and-place-poster.jpg"
+    title: "Pick-and-place demo"
+    caption: "Arm sorting objects by color using a webcam and OpenCV."
+    pdf_fallback: "media/projects/robotic-arm/pick-and-place-poster.jpg"

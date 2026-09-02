@@ -1,0 +1,15 @@
+:root {
+  --color-graphite-900: #1C1F22;
+  --color-steel-700: #3D4650;
+  --color-slate-400: #7C8894;
+  --color-fog-100: #EDEFF1;
+  --color-paper: #FFFFFF;
+  --color-blueprint-500: #235789;
+  --color-signal-amber: #D98E3B;
+  --font-display: 'Archivo', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --content-max-width: 1100px;
+  --grid-unit: 8px;
+  --radius-base: 2px;
+}

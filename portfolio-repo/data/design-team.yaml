@@ -1,0 +1,9 @@
+# One entry per role. Add another "- title: ..." block for a second role.
+- title: "Formula SAE — Powertrain Subteam"
+  subtitle: "Electronics Lead"
+  dates: "Sep 2025 – Present"
+  org: "University Formula SAE Team"
+  description: >
+    Lead a 4-person electronics subteam responsible for the car's
+    telemetry system, designing and maintaining the CAN bus network
+    that connects the ECU, battery management system, and dash display.

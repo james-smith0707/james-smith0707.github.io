@@ -1,23 +1,21 @@
-slug: pcb-sensor-hub
-title: "Modular PCB Sensor Hub"
-subtitle: "Stackable environmental sensor boards over I2C"
+slug: Synthetic_CV
+title: "CAD to CV model suite"
+subtitle: "Synthetic Dataset Generator and Computer Vision Model Training Suite that created detector "
 dates: "May 2025 – Jul 2025"
-tags: ["PCB Design", "Firmware", "IoT"]
-tools: ["Altium Designer", "STM32", "I2C"]
+tags: ["Dataset Engineering", "Computer Vision", "Neural Network Training"]
+tools: ["Open CV", "RESNET", "Ultralytics YOLO", "Pytorch"]
 
 short_description: >
-  A stackable sensor board system where each board adds one
-  environmental sensor over a shared I2C bus, letting a project
-  mix and match temperature, humidity, and air-quality sensing
-  without redesigning the base board.
+  A Synthetic Dataset Generator able to create thousands of unique, annotated training images of spesific parts from cad models. A smart dataloader able to train 
+  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model 
 
 skills_demonstrated:
-  - "Multi-board PCB stack design"
+  - ""
   - "I2C bus arbitration"
   - "Low-power firmware design"
 
-links:
-  github: "https://github.com/yourusername/pcb-sensor-hub"
+#links:
+#  github: "https://github.com/yourusername/pcb-sensor-hub"
 
 main_media:
   type: image

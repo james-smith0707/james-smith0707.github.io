@@ -5,17 +5,15 @@
 # website JSON and the LaTeX portfolio section.
 # ============================================================
 
-slug: line-follower-robot
-title: "Autonomous Line-Following Robot"
-subtitle: "PID-tuned mobile robot with adaptive speed control"
+slug: Humanoid_OS
+title: "Humanoid Robot Operating System"
+subtitle: "Lead software development for humanoid robot"
 dates: "Jan 2026 – Mar 2026"
-tags: ["Embedded Systems", "Control Theory", "PCB Design"]
-tools: ["STM32", "KiCad", "C", "MATLAB"]
+tags: ["Autonomus Humanoid Robotics", "Re", "PCB Design"]
+tools: ["ROS", "Python", "C"]
 
 short_description: >
-  A two-wheeled autonomous robot that follows a taped track using an
-  IR sensor array and a tuned PID control loop, holding speed through
-  sharp corners without losing the line.
+  Designed a ROS2 based operating system for driving a Unitree G1 humanoid robot. Composing 
 
 skills_demonstrated:
   - "PID control tuning"

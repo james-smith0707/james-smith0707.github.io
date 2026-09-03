@@ -3,7 +3,7 @@
 
 \projectOpen{Humanoid Robot Operating System}{Lead software development for humanoid robot}{Jan 2026 – Mar 2026}{Autonomus Humanoid Robotics, Re, PCB Design}{ROS, Python, C}
 
-\projectSummary{A two-wheeled autonomous robot that follows a taped track using an IR sensor array and a tuned PID control loop, holding speed through sharp corners without losing the line.
+\projectSummary{Designed a ROS2 based operating system for driving a Unitree G1 humanoid robot. Composing 
 }
 
 \projectPhoto{media/projects/line-follower-robot/cover.jpg}{Final chassis, top view}{Custom PCB mounted above the IR sensor array and drive motors.}
@@ -41,12 +41,12 @@
 
 
 \projectClose
-\projectOpen{Modular PCB Sensor Hub}{Stackable environmental sensor boards over I2C}{May 2025 – Jul 2025}{PCB Design, Firmware, IoT}{Altium Designer, STM32, I2C}
+\projectOpen{CAD to CV model suite}{Synthetic Dataset Generator and Computer Vision Model Training Suite that created detector }{May 2025 – Jul 2025}{Dataset Engineering, Computer Vision, Neural Network Training}{Open CV, RESNET, Ultralytics YOLO, Pytorch}
 
-\projectSummary{A stackable sensor board system where each board adds one environmental sensor over a shared I2C bus, letting a project mix and match temperature, humidity, and air-quality sensing without redesigning the base board.
+\projectSummary{A Synthetic Dataset Generator able to create thousands of unique, annotated training images of spesific parts from cad models. A smart dataloader able to train  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model 
 }
 
-\projectPhoto{media/projects/pcb-sensor-hub/cover.jpg}{Three-board stack}{Base board with humidity and air-quality daughter boards attached.}
+\projectPhoto{media/projects/Synthetic_CV/test-1.mp4}{Test of Both Detection and Orientation Model}{Raw Detections (No tracking/filtering) demonstrating the capability of the model to understand parts in 6D space.}
 
 \projectText{Each daughter board carries a unique I2C address set by a resistor-strapped address pin, so boards can be stacked in any order and combination without firmware changes on the base.}
 

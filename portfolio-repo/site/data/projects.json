@@ -14,7 +14,7 @@
       "Python",
       "C"
     ],
-    "short_description": "A two-wheeled autonomous robot that follows a taped track using an IR sensor array and a tuned PID control loop, holding speed through sharp corners without losing the line.\n",
+    "short_description": "Designed a ROS2 based operating system for driving a Unitree G1 humanoid robot. Composing \n",
     "skills_demonstrated": [
       "PID control tuning",
       "PCB layout and fabrication",
@@ -133,34 +133,31 @@
     ]
   },
   {
-    "slug": "pcb-sensor-hub",
-    "title": "Modular PCB Sensor Hub",
-    "subtitle": "Stackable environmental sensor boards over I2C",
+    "slug": "Synthetic_CV",
+    "title": "CAD to CV model suite",
+    "subtitle": "Synthetic Dataset Generator and Computer Vision Model Training Suite that created detector ",
     "dates": "May 2025 \u2013 Jul 2025",
     "tags": [
-      "PCB Design",
-      "Firmware",
-      "IoT"
+      "Dataset Engineering",
+      "Computer Vision",
+      "Neural Network Training"
     ],
     "tools": [
-      "Altium Designer",
-      "STM32",
-      "I2C"
+      "Open CV",
+      "RESNET",
+      "Ultralytics YOLO",
+      "Pytorch"
     ],
-    "short_description": "A stackable sensor board system where each board adds one environmental sensor over a shared I2C bus, letting a project mix and match temperature, humidity, and air-quality sensing without redesigning the base board.\n",
+    "short_description": "A Synthetic Dataset Generator able to create thousands of unique, annotated training images of spesific parts from cad models. A smart dataloader able to train  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model \n",
     "skills_demonstrated": [
-      "Multi-board PCB stack design",
-      "I2C bus arbitration",
-      "Low-power firmware design"
+      "AI Training Dataset Engineering",
+      "Computer Vision Model Training"
     ],
-    "links": {
-      "github": "https://github.com/yourusername/pcb-sensor-hub"
-    },
     "main_media": {
-      "type": "image",
-      "src": "media/projects/pcb-sensor-hub/cover.jpg",
-      "title": "Three-board stack",
-      "caption": "Base board with humidity and air-quality daughter boards attached."
+      "type": "video",
+      "src": "media/projects/Synthetic_CV/test-1.mp4",
+      "title": "Test of Both Detection and Orientation Model",
+      "caption": "Raw Detections (No tracking/filtering) demonstrating the capability of the model to understand parts in 6D space."
     },
     "blocks": [
       {

@@ -10,18 +10,17 @@ short_description: >
   Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model 
 
 skills_demonstrated:
-  - ""
-  - "I2C bus arbitration"
-  - "Low-power firmware design"
+  - "AI Training Dataset Engineering"
+  - "Computer Vision Model Training"
 
 #links:
 #  github: "https://github.com/yourusername/pcb-sensor-hub"
 
 main_media:
-  type: image
-  src: "media/projects/pcb-sensor-hub/cover.jpg"
-  title: "Three-board stack"
-  caption: "Base board with humidity and air-quality daughter boards attached."
+  type: video
+  src: "media/projects/Synthetic_CV/test-1.mp4"
+  title: "Test of Both Detection and Orientation Model"
+  caption: "Raw Detections (No tracking/filtering) demonstrating the capability of the model to understand parts in 6D space."
 
 blocks:
   - type: text

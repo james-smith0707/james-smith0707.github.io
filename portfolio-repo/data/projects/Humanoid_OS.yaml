@@ -9,11 +9,15 @@ slug: Humanoid_OS
 title: "Humanoid Robot Operating System"
 subtitle: "Lead software development for humanoid robot"
 dates: "Jan 2026 – Mar 2026"
-tags: ["Autonomus Humanoid Robotics", "Re", "PCB Design"]
-tools: ["ROS", "Python", "C"]
+tags: ["Autonomus Humanoid Robotics", "Reinforcement Learning", ""]
+tools: ["ROS", "NVDIA IssacLab", "C"]
 
 short_description: >
-  Designed a ROS2 based operating system for driving a Unitree G1 humanoid robot. Composing 
+  A ROS2 based operating system for controlling a humanoid robot. Composing Computer Vision, 
+  SLAM/Odometry, VLM based Reasoning, and Trained RL policies into a deployable humaoid robot operating stack. 
+ # Allowed the humanoid to
+ # navigate precise docking positions using April Tags, tarck detected objects relative to itself or in a world map, execute trained locomotion RL policies on tracked objects, plan out modular and complex plans using a python syntax and a simple API of robot abilities.  
+
 
 skills_demonstrated:
   - "PID control tuning"
@@ -37,32 +41,37 @@ main_media:
 # LaTeX portfolio. Reorder, add, or remove freely. Supported
 # types: text | photo | gallery | video | stl
 # ------------------------------------------------------------
-blocks:
+blocks: 
+
   - type: gallery
-    title: "Build process"
+    title: "Concurrent Proccesses Within the Humanoid Operating System"
     items:
-      - src: "media/projects/line-follower-robot/build-1.jpg"
-        title: "Bare PCB"
-        caption: "First revision board fresh off the mill."
-      - src: "media/projects/line-follower-robot/build-2.jpg"
-        title: "Populated board"
-        caption: "Sensor array and motor drivers soldered in."
-      - src: "media/projects/line-follower-robot/build-3.jpg"
-        title: "Chassis assembly"
-        caption: "3D-printed chassis with motors mounted."
+      - src: "media/projects/Humanoid_OS/Reasoning_Preview.png"
+        title: "Reasoning Interface"
+        caption: "Text based Chatbot interface for robot."
+      - src: "media/projects/Humanoid_OS/Lidar_Map_Preview.png"
+        title: "Lidar Map"
+        caption: "Lidar Pointcloud Projection with Remembered Landmarks."
+      - src: "media/projects/Humanoid_OS/Vision_Preview.png"
+        title: "Robot Perspective Vision"
+        caption: "Live camera feed from the robot with live tracked detections."
+      - src: "media/projects/Humanoid_OS/ISSACLAB_Preview.png"
+        title: "Robots In IssacLab"
+        caption: "Robots developing a RL policy for pressing a button."
 
   - type: text
     content: >
-      The first revision used a fixed-gain proportional controller,
-      which oscillated badly on tight corners. Moving to a full PID
-      loop with gain scheduling based on error magnitude let the
-      robot hold near-top speed on straights while slowing smoothly
-      into turns.
+      The robot could work entirely autonomously, the local vision language model (A Lora fine tuned QWEN 3 model) could take text 
+      or voice based input, and use python syntax and a simple robot API to create dynamic workflows. This allowed the reactivity 
+      of artificial inteligence, and the predictability of typical code, perfect for a robot doing mostly repetitive tasks in a manufacturing setting. 
+      The robot API included functions that allowed the model to navigate wherever it chose, execute trained actions, inspect tracked objects, 
+      analyze its surroundings and react according to them. The model would also be able to handle failures, it had a recovery mode that would engage whenever one of the functions
+      it called would return a failure, this prevented the robot from getting lost or trying to do an action that the robot could not preform.
 
-  - type: photo
-    src: "media/projects/line-follower-robot/pid-tuning.jpg"
-    title: "Tuning session"
-    caption: "Logging sensor error against wheel speed to hand-tune PID gains."
+  - type: video
+    src: "media/projects/Humanoid_OS/Humanoid_Nav_2_Web.mp4"
+    title: "Three Station Navigation"
+    caption: "The Robot planning a workflow to visit three workstations, based on a text prompt, then going to all three."
 
   - type: text
     content: >

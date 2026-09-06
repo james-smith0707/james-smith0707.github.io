@@ -1,0 +1,54 @@
+slug: Cobot_OS
+title: "Colaborative Robot Convayer Loader"
+subtitle: "ROS based applicartion integrating a Colaborative Robot with Computer Vision system for an automated convayor loading application"
+dates: "Sep 2025 – Dec 2025"
+tags: ["Manufacturing Automation", "Computer Vision"]
+tools: ["ROS2", "C++", "Python"]
+
+short_description: >
+  A ROS application for driving a Colaborative Robot, streaming from a RGB-D camera, 
+  and integrating the two with a YOLO based CV detector.
+
+skills_demonstrated:
+  - "Inverse kinematics derivation"
+  - "Parametric CAD modeling"
+  - "Servo control and calibration"
+
+#links:
+#  github: "https://github.com/yourusername/robotic-arm"
+
+main_media:
+  type: image
+  src: "media/projects/robotic-arm/cover.jpg"
+  title: "Assembled arm"
+  caption: "Full assembly with gripper attachment at rest position."
+
+blocks:
+  - type: video
+    src: "media/projects/Cobot_OS/Cobot_Layer_Web.mp4"
+    title: "Live  Demo with Dashboard"
+    caption: "Robot Detecting and Pick/Placing one layer of parts into a fixture with <10mm positional tolerence."
+
+  - type: text
+    content: >
+      Developing an entire ROS stack that bypassed the Cobot's pendant based UI 
+      and interfaced directly with its controller over a LAN connection, and by integrating 
+      a camera streamer, I created modular robotics systen not just a singular automated proccess. 
+
+  - type: video
+    src: "media/projects/Cobot_OS/Cobot_Calibration_Web.mp4"
+    title: "Automatic Calibration Procedure"
+    caption: "An automated procedure for calculating the matrix transformation mapping camera frame coordinates to robot frame coordinates"
+
+  - type: text
+    content: >
+      The gripper jaw went through four print iterations to get
+      enough compliance to grip irregular objects without a force
+      sensor, using a living-hinge geometry at the jaw base.
+
+  #- type: video
+  #  src: "media/projects/Cobot_OS/Cobot_Layer_Web.mp4"
+    #poster: "media/projects/Cobot_OS/.jpg"
+  #  title: "Pick-and-place demo"
+  #  caption: "Arm sorting objects by color using a webcam and OpenCV."
+    #pdf_fallback: "media/projects/robotic-arm/pick-and-place-poster.jpg"

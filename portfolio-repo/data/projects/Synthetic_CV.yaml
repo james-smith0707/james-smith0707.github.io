@@ -18,31 +18,59 @@ skills_demonstrated:
 
 main_media:
   type: video
-  src: "media/projects/Synthetic_CV/test-1.mp4"
+  src: "media/projects/Synthetic_CV/Parts_cropped.mp4"
   title: "Test of Both Detection and Orientation Model"
   caption: "Raw Detections (No tracking/filtering) demonstrating the capability of the model to understand parts in 6D space."
 
 blocks:
+
   - type: text
     content: >
-      Each daughter board carries a unique I2C address set by a
-      resistor-strapped address pin, so boards can be stacked in
-      any order and combination without firmware changes on the base.
-
-  - type: gallery
-    title: "Individual boards"
-    items:
-      - src: "media/projects/pcb-sensor-hub/board-temp.jpg"
-        title: "Temperature board"
-        caption: "Single-sensor board, smallest form factor in the stack."
-      - src: "media/projects/pcb-sensor-hub/board-humidity.jpg"
-        title: "Humidity board"
-        caption: "Includes onboard heater trace for condensation prevention."
-      - src: "media/projects/pcb-sensor-hub/board-airquality.jpg"
-        title: "Air quality board"
-        caption: "VOC sensor with dedicated shielding to reduce PCB heat coupling."
+      The roposity was a modular tool for rapidly creating and exporting computer vision models custom to company parts using only a CAD file of the part.
+      It allowed the user to upload CAD files, set different configurations for the dataset, and start the automatic generation/training procedure within minutes. 
+      Using PyRender to overlay parts ontop of background images, thousands of unique, annotated training images could be created instantly, completely removing the
+      tedius, hours long proccess of annotating images for computer vision model training. 
 
   - type: photo
-    src: "media/projects/pcb-sensor-hub/stack-schematic.png"
-    title: "Bus topology"
-    caption: "Shared I2C bus routed through the board-to-board stacking connector."
+    src: "media/projects/Synthetic_CV/example-render.jpg"
+    title: "Example Training Rendering"
+    caption: "Randomized training image, can be generated in seconds with annotation."
+
+  - type: text
+    content: >
+      Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, blur, size, orientation, and visibility could all be 
+      randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization. 
+      Distractors were also randomized to prevent false positive detections and the model learning on static scenes
+
+  - type: gallery
+    title: "Effect of Cirriculum on Model Training"
+    items:
+      - src: "media/projects/Synthetic_CV/pre-cirriculum-training-crop.png"
+        title: "Without Cirriculum"
+        #caption: "C."
+      - src: "media/projects/Synthetic_CV/post-cirriculum-training-crop.png"
+        title: "With Cirriculum"
+        #caption: "Includes."
+
+  - type: text
+    content: >
+      Implamenting a smart dataloader increased both the speed and accuracy of training the orientation model. 
+      The cirruculum was deloped by calculating an overall abstraction score for each image based on the randomized values that made up the image.
+      Images with many annotated parts, high contrast, low blur, and less distractors were given a high abstraction score, and were trained in earlier epochs. 
+      This allowed the model to converge rapidly, within the first quarter of training the model has a good understanding of the parts it is looking for. 
+      Alternatively, images with many distractors, fewer parts, low contrast, and more blur/distortion were given a low abstraction score, and were fed during the later portion of training. 
+      These "realer" images fortified the model, to not just understand the features of the part, but to be able to infer when parts were less visible, or blured. They also 
+      enforced which features were not detections using distractors to prevent false positives. 
+
+
+  - type: gallery
+    title: "Abstracted Rendering vs Real Rendering"
+    items:
+      - src: "media/projects/Synthetic_CV/abstract-2.jpg"
+        title: "High Abstraction Rendering"
+        caption: "Many parts that allow fast learning."
+      - src: "media/projects/Synthetic_CV/real-2.jpg"
+        title: "Low Abstraction Rendering"
+        caption: "Simulates actual deployment images reinforcing model bahavior."
+
+

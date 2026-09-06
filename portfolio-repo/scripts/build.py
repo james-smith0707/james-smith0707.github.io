@@ -19,6 +19,7 @@ hand-edited — they're regenerated every run and your edits will be lost.
 """
 
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -251,6 +252,23 @@ def build_title():
     print(f"  wrote {tex_out.relative_to(ROOT)}")
 
 
+def build_media():
+    """
+    Copies media/ -> site/media/ so the site always has a real, working
+    copy of your media regardless of how the repo was obtained (a zip
+    download's unzip tool often can't recreate a symlink, which used to
+    live here and silently broke every image/video on the site).
+    """
+    src = ROOT / "media"
+    dst = SITE / "media"
+    if dst.is_symlink() or dst.is_file():
+        dst.unlink()
+    elif dst.is_dir():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
+    print(f"  copied {src.relative_to(ROOT)} -> {dst.relative_to(ROOT)}")
+
+
 def main():
     print("Building theme...")
     build_theme()
@@ -258,6 +276,8 @@ def main():
     build_title()
     print("Building projects...")
     build_projects()
+    print("Syncing media...")
+    build_media()
     print("Building optional sections...")
     build_simple_section("design-team.yaml", "simple_entry_block.tex.j2", "design-team.tex", "design-team.json")
     build_simple_section("internships.yaml", "simple_entry_block.tex.j2", "internships.tex", "internships.json")

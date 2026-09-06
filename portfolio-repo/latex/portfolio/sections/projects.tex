@@ -36,7 +36,9 @@
 
 \projectInteractiveFallback{}{Three Station Navigation}{The Robot planning a workflow to visit three workstations, based on a text prompt, then going to all three.}{VIDEO}
 
-\projectText{Final lap times improved by 38\% over the proportional-only version, with zero track departures across 20 consecutive test laps.}
+\projectText{Navigation and Odometry used a two tiered SLAM + April Tag anchor system spesifically designed for a robot on an industrial plant floor with multiple workstations  to precisely navigate to. Data from the Robots LiDAR was projected into a 2D costmap which dynamically stored traversable and non traversable terain, and remembered april tag landmarks. The mapping system  allowed for the use of a tradititional pathing algorithm (A*) for easy map traversal.   The first tier of the navigation included following the A* traversal, with regular route validation and replans to readt to a dynamic enviroment, to a dedicated remembered location where it could visibly see the april tag it was trying to navigate to. Once the desired tag was in view the robot could adjust itself by comparing its current 6D offset vector from the tag to the pre-captured offset vector using the tagas ground truth. This created a simple, yet modualar, interface for teaching the robot new navigation targtets: capture the desired offset, show the tag, and the robot is able to autonomously able to navigate to the new workstation.}
+
+\projectInteractiveFallback{}{Obstacle Avoidance and Workstsation Navigation}{The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag.}{VIDEO}
 
 
 \projectClose
@@ -83,13 +85,17 @@
 \projectSummary{A Synthetic Dataset Generator able to create thousands of unique, annotated training images of spesific parts from cad models. A smart dataloader able to train  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model 
 }
 
-\projectPhoto{media/projects/Synthetic_CV/Parts_cropped.mp4}{Test of Both Detection and Orientation Model}{Raw Detections (No tracking/filtering) demonstrating the capability of the model to understand parts in 6D space.}
+\projectPhoto{media/projects/Synthetic_CV/Parts_cropped.mp4}{Test of Both Detection and Orientation Model}{0\% real images trained for this model, pre filtered raw detections}
 
-\projectText{The roposity was a modular tool for rapidly creating and exporting computer vision models custom to company parts using only a CAD file of the part. It allowed the user to upload CAD files, set different configurations for the dataset, and start the automatic generation/training procedure within minutes.  Using PyRender to overlay parts ontop of background images, thousands of unique, annotated training images could be created instantly, completely removing the tedius, hours long proccess of annotating images for computer vision model training.}
+\projectText{The roposity was a modular tool for rapidly creating and exporting computer vision models custom to company parts using only a CAD file of the part. It allowed the user to upload CAD files and start the automatic generation/training procedure within minutes, completely bypassing the hours of capturing and annotating training images. It was able to create models that preformed better, overall, and on edge cases, than hand trained alternatives.}
+
+\projectInteractiveFallback{}{Real Time Detection and Orientation Regression}{}{VIDEO}
+
+\projectText{Using PyRender to overlay parts ontop of background images, thousands of unique, annotated training images could be created instantly, completely removing the tedius, hours long proccess of annotating images for computer vision model training.}
 
 \projectPhoto{media/projects/Synthetic_CV/example-render.jpg}{Example Training Rendering}{Randomized training image, can be generated in seconds with annotation.}
 
-\projectText{Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static scenes}
+\projectText{Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, shadows, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static scenes}
 
 \begin{projectGallery}{Effect of Cirriculum on Model Training}
 \projectGalleryItem{media/projects/Synthetic_CV/pre-cirriculum-training-crop.png}{Without Cirriculum}{}{0.31}

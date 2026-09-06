@@ -119,7 +119,13 @@
       },
       {
         "type": "text",
-        "content": "Final lap times improved by 38% over the proportional-only version, with zero track departures across 20 consecutive test laps.\n"
+        "content": "Navigation and Odometry used a two tiered SLAM + April Tag anchor system spesifically designed for a robot on an industrial plant floor with multiple workstations  to precisely navigate to. Data from the Robots LiDAR was projected into a 2D costmap which dynamically stored traversable and non traversable terain, and remembered april tag landmarks. The mapping system  allowed for the use of a tradititional pathing algorithm (A*) for easy map traversal.   The first tier of the navigation included following the A* traversal, with regular route validation and replans to readt to a dynamic enviroment, to a dedicated remembered location where it could visibly see the april tag it was trying to navigate to. Once the desired tag was in view the robot could adjust itself by comparing its current 6D offset vector from the tag to the pre-captured offset vector using the tagas ground truth. This created a simple, yet modualar, interface for teaching the robot new navigation targtets: capture the desired offset, show the tag, and the robot is able to autonomously able to navigate to the new workstation. \n"
+      },
+      {
+        "type": "video",
+        "src": "media/projects/Humanoid_OS/Humanoid_Nav_1_Web.mp4",
+        "title": "Obstacle Avoidance and Workstsation Navigation",
+        "caption": "The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag."
       }
     ]
   },
@@ -273,12 +279,23 @@
       "type": "video",
       "src": "media/projects/Synthetic_CV/Parts_cropped.mp4",
       "title": "Test of Both Detection and Orientation Model",
-      "caption": "Raw Detections (No tracking/filtering) demonstrating the capability of the model to understand parts in 6D space."
+      "caption": "0% real images trained for this model, pre filtered raw detections",
+      "pdf_fallback": "media/projects/Synthetic_CV/detections_preview.mp4"
     },
     "blocks": [
       {
         "type": "text",
-        "content": "The roposity was a modular tool for rapidly creating and exporting computer vision models custom to company parts using only a CAD file of the part. It allowed the user to upload CAD files, set different configurations for the dataset, and start the automatic generation/training procedure within minutes.  Using PyRender to overlay parts ontop of background images, thousands of unique, annotated training images could be created instantly, completely removing the tedius, hours long proccess of annotating images for computer vision model training. \n"
+        "content": "The roposity was a modular tool for rapidly creating and exporting computer vision models custom to company parts using only a CAD file of the part. It allowed the user to upload CAD files and start the automatic generation/training procedure within minutes, completely bypassing the hours of capturing and annotating training images. It was able to create models that preformed better, overall, and on edge cases, than hand trained alternatives.\n"
+      },
+      {
+        "type": "video",
+        "src": "media/projects/Synthetic_CV/toss-1.mp4",
+        "title": "Real Time Detection and Orientation Regression",
+        "caption": ""
+      },
+      {
+        "type": "text",
+        "content": "Using PyRender to overlay parts ontop of background images, thousands of unique, annotated training images could be created instantly, completely removing the tedius, hours long proccess of annotating images for computer vision model training. \n"
       },
       {
         "type": "photo",
@@ -288,7 +305,7 @@
       },
       {
         "type": "text",
-        "content": "Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static scenes\n"
+        "content": "Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, shadows, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static scenes\n"
       },
       {
         "type": "gallery",

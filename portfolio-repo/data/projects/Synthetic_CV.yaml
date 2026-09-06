@@ -6,8 +6,9 @@ tags: ["Dataset Engineering", "Computer Vision", "Neural Network Training"]
 tools: ["Open CV", "RESNET", "Ultralytics YOLO", "Pytorch"]
 
 short_description: >
-  A Synthetic Dataset Generator able to create thousands of unique, annotated training images of spesific parts from cad models. A smart dataloader able to train 
-  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model 
+  This project includes a synthetic dataset generator able to create thousands of unique, annotated training images of spesific parts from cad models in minutes. A smart dataloader able to train 
+  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. It can create a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model
+ 
 
 skills_demonstrated:
   - "AI Training Dataset Engineering"
@@ -19,15 +20,25 @@ skills_demonstrated:
 main_media:
   type: video
   src: "media/projects/Synthetic_CV/Parts_cropped.mp4"
-  title: "Test of Both Detection and Orientation Model"
-  caption: "Raw Detections (No tracking/filtering) demonstrating the capability of the model to understand parts in 6D space."
+  title: "Test of Both Detection and Orientation Model on Real Frames"
+  caption: "0% real images trained for this model, pre filtered raw detections"
+  pdf_fallback: "media/projects/Synthetic_CV/detections_preview.mp4"
 
 blocks:
 
   - type: text
     content: >
       The roposity was a modular tool for rapidly creating and exporting computer vision models custom to company parts using only a CAD file of the part.
-      It allowed the user to upload CAD files, set different configurations for the dataset, and start the automatic generation/training procedure within minutes. 
+      It allowed the user to upload CAD files and start the automatic generation/training procedure within minutes, completely bypassing the hours of capturing and annotating training images.
+      It was able to create models that preformed better, overall, and on edge cases, than hand trained alternatives.
+
+  - type: video
+    src: "media/projects/Synthetic_CV/toss-1.mp4"
+    title: "Real Time Detection and Orientation Regression"
+    caption: ""
+  
+  - type: text
+    content: >
       Using PyRender to overlay parts ontop of background images, thousands of unique, annotated training images could be created instantly, completely removing the
       tedius, hours long proccess of annotating images for computer vision model training. 
 
@@ -38,9 +49,9 @@ blocks:
 
   - type: text
     content: >
-      Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, blur, size, orientation, and visibility could all be 
+      Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, shadows, blur, size, orientation, and visibility could all be 
       randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization. 
-      Distractors were also randomized to prevent false positive detections and the model learning on static scenes
+      Distractors were also randomized to prevent false positive detections and the model learning on static sceness
 
   - type: gallery
     title: "Effect of Cirriculum on Model Training"
@@ -60,7 +71,7 @@ blocks:
       This allowed the model to converge rapidly, within the first quarter of training the model has a good understanding of the parts it is looking for. 
       Alternatively, images with many distractors, fewer parts, low contrast, and more blur/distortion were given a low abstraction score, and were fed during the later portion of training. 
       These "realer" images fortified the model, to not just understand the features of the part, but to be able to infer when parts were less visible, or blured. They also 
-      enforced which features were not detections using distractors to prevent false positives. 
+      enforced which features were not detections using distractors to prevent false positives.
 
 
   - type: gallery
@@ -73,4 +84,8 @@ blocks:
         title: "Low Abstraction Rendering"
         caption: "Simulates actual deployment images reinforcing model bahavior."
 
+
+  - type: text
+    content: >
+      Models that were generated can be used for any application that requires 6D pose of a part. Applications could include part inspection, line validation/part tracking, typical robotics and humanoid robotics.
 

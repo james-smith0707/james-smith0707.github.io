@@ -75,6 +75,14 @@ blocks:
 
   - type: text
     content: >
-      Final lap times improved by 38% over the proportional-only
-      version, with zero track departures across 20 consecutive
-      test laps.
+      Navigation and Odometry used a two tiered SLAM + April Tag anchor system spesifically designed for a robot on an industrial plant floor with multiple workstations 
+      to precisely navigate to. Data from the Robots LiDAR was projected into a 2D costmap which dynamically stored traversable and non traversable terain, and remembered april tag landmarks. The mapping system 
+      allowed for the use of a tradititional pathing algorithm (A*) for easy map traversal.  
+      The first tier of the navigation included following the A* traversal, with regular route validation and replans to readt to a dynamic enviroment, to a dedicated remembered location where it could visibly see the april tag it was trying to navigate to.
+      Once the desired tag was in view the robot could adjust itself by comparing its current 6D offset vector from the tag to the pre-captured offset vector using the tagas ground truth.
+      This created a simple, yet modualar, interface for teaching the robot new navigation targtets: capture the desired offset, show the tag, and the robot is able to autonomously able to navigate to the new workstation. 
+
+  - type: video
+    src: "media/projects/Humanoid_OS/Humanoid_Nav_1_Web.mp4"
+    title: "Obstacle Avoidance and Workstsation Navigation"
+    caption: "The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag."

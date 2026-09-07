@@ -130,131 +130,6 @@
     ]
   },
   {
-    "slug": "robotic-arm",
-    "title": "3-DOF Desktop Robotic Arm",
-    "subtitle": "Inverse-kinematics-driven pick-and-place arm",
-    "dates": "Sep 2025 \u2013 Dec 2025",
-    "tags": [
-      "Robotics",
-      "CAD",
-      "Kinematics"
-    ],
-    "tools": [
-      "SolidWorks",
-      "Arduino",
-      "Python"
-    ],
-    "short_description": "A three-degree-of-freedom robotic arm with a custom inverse kinematics solver, designed and 3D-printed from scratch for a desktop pick-and-place demo.\n",
-    "skills_demonstrated": [
-      "Inverse kinematics derivation",
-      "Parametric CAD modeling",
-      "Servo control and calibration"
-    ],
-    "links": {
-      "github": "https://github.com/yourusername/robotic-arm"
-    },
-    "main_media": {
-      "type": "image",
-      "src": "media/projects/robotic-arm/cover.jpg",
-      "title": "Assembled arm",
-      "caption": "Full assembly with gripper attachment at rest position."
-    },
-    "blocks": [
-      {
-        "type": "photo",
-        "src": "media/projects/robotic-arm/cad-overview.png",
-        "title": "CAD overview",
-        "caption": "Full linkage assembly modeled before any printing began."
-      },
-      {
-        "type": "text",
-        "content": "Rather than use a lookup table, I derived closed-form inverse kinematics for the 3-link planar arm so any target (x, y) within the workspace maps directly to joint angles \u2014 no iterative solving needed on the microcontroller.\n"
-      },
-      {
-        "type": "stl",
-        "src": "media/projects/robotic-arm/gripper-jaw.stl",
-        "title": "Gripper jaw (interactive)",
-        "caption": "Drag to rotate \u2014 this is the actual print file for the final jaw geometry.",
-        "autorotate": true,
-        "pdf_fallback": "media/projects/robotic-arm/gripper-jaw-render.png"
-      },
-      {
-        "type": "text",
-        "content": "The gripper jaw went through four print iterations to get enough compliance to grip irregular objects without a force sensor, using a living-hinge geometry at the jaw base.\n"
-      },
-      {
-        "type": "video",
-        "src": "media/projects/robotic-arm/pick-and-place-demo.mp4",
-        "poster": "media/projects/robotic-arm/pick-and-place-poster.jpg",
-        "title": "Pick-and-place demo",
-        "caption": "Arm sorting objects by color using a webcam and OpenCV.",
-        "pdf_fallback": "media/projects/robotic-arm/pick-and-place-poster.jpg"
-      }
-    ]
-  },
-  {
-    "slug": "Rocketry_CAM",
-    "title": "Camera Harness System For Waterloo Rocketry",
-    "subtitle": "Designed Parts for mounting cameras to a student rocket",
-    "dates": "Sep 2025 \u2013 April 2026",
-    "tags": [
-      "CAD",
-      "Mechanical Design",
-      "Simulation"
-    ],
-    "tools": [
-      "SolidWorks",
-      "3D Prototyping"
-    ],
-    "short_description": "A three-degree-of-freedom robotic arm with a custom inverse kinematics solver, designed and 3D-printed from scratch for a desktop pick-and-place demo.\n",
-    "skills_demonstrated": [
-      "Inverse kinematics derivation",
-      "Parametric CAD modeling",
-      "Servo control and calibration"
-    ],
-    "links": {
-      "github": "https://github.com/yourusername/robotic-arm"
-    },
-    "main_media": {
-      "type": "image",
-      "src": "media/projects/robotic-arm/cover.jpg",
-      "title": "Assembled arm",
-      "caption": "Full assembly with gripper attachment at rest position."
-    },
-    "blocks": [
-      {
-        "type": "photo",
-        "src": "media/projects/robotic-arm/cad-overview.png",
-        "title": "CAD overview",
-        "caption": "Full linkage assembly modeled before any printing began."
-      },
-      {
-        "type": "text",
-        "content": "Rather than use a lookup table, I derived closed-form inverse kinematics for the 3-link planar arm so any target (x, y) within the workspace maps directly to joint angles \u2014 no iterative solving needed on the microcontroller.\n"
-      },
-      {
-        "type": "stl",
-        "src": "media/projects/robotic-arm/gripper-jaw.stl",
-        "title": "Gripper jaw (interactive)",
-        "caption": "Drag to rotate \u2014 this is the actual print file for the final jaw geometry.",
-        "autorotate": true,
-        "pdf_fallback": "media/projects/robotic-arm/gripper-jaw-render.png"
-      },
-      {
-        "type": "text",
-        "content": "The gripper jaw went through four print iterations to get enough compliance to grip irregular objects without a force sensor, using a living-hinge geometry at the jaw base.\n"
-      },
-      {
-        "type": "video",
-        "src": "media/projects/robotic-arm/pick-and-place-demo.mp4",
-        "poster": "media/projects/robotic-arm/pick-and-place-poster.jpg",
-        "title": "Pick-and-place demo",
-        "caption": "Arm sorting objects by color using a webcam and OpenCV.",
-        "pdf_fallback": "media/projects/robotic-arm/pick-and-place-poster.jpg"
-      }
-    ]
-  },
-  {
     "slug": "Synthetic_CV",
     "title": "CAD to CV model suite",
     "subtitle": "Synthetic Dataset Generator and Computer Vision Model Training Suite that created detector ",
@@ -270,7 +145,7 @@
       "Ultralytics YOLO",
       "Pytorch"
     ],
-    "short_description": "A Synthetic Dataset Generator able to create thousands of unique, annotated training images of spesific parts from cad models. A smart dataloader able to train  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model \n",
+    "short_description": "This project includes a synthetic dataset generator able to create thousands of unique, annotated training images of spesific parts from cad models in minutes. A smart dataloader able to train  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. It can create a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model\n",
     "skills_demonstrated": [
       "AI Training Dataset Engineering",
       "Computer Vision Model Training"
@@ -278,7 +153,7 @@
     "main_media": {
       "type": "video",
       "src": "media/projects/Synthetic_CV/Parts_cropped.mp4",
-      "title": "Test of Both Detection and Orientation Model",
+      "title": "Test of Both Detection and Orientation Model on Real Frames",
       "caption": "0% real images trained for this model, pre filtered raw detections",
       "pdf_fallback": "media/projects/Synthetic_CV/detections_preview.mp4"
     },
@@ -305,7 +180,7 @@
       },
       {
         "type": "text",
-        "content": "Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, shadows, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static scenes\n"
+        "content": "Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, shadows, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static sceness\n"
       },
       {
         "type": "gallery",
@@ -323,7 +198,7 @@
       },
       {
         "type": "text",
-        "content": "Implamenting a smart dataloader increased both the speed and accuracy of training the orientation model.  The cirruculum was deloped by calculating an overall abstraction score for each image based on the randomized values that made up the image. Images with many annotated parts, high contrast, low blur, and less distractors were given a high abstraction score, and were trained in earlier epochs.  This allowed the model to converge rapidly, within the first quarter of training the model has a good understanding of the parts it is looking for.  Alternatively, images with many distractors, fewer parts, low contrast, and more blur/distortion were given a low abstraction score, and were fed during the later portion of training.  These \"realer\" images fortified the model, to not just understand the features of the part, but to be able to infer when parts were less visible, or blured. They also  enforced which features were not detections using distractors to prevent false positives. \n"
+        "content": "Implamenting a smart dataloader increased both the speed and accuracy of training the orientation model.  The cirruculum was deloped by calculating an overall abstraction score for each image based on the randomized values that made up the image. Images with many annotated parts, high contrast, low blur, and less distractors were given a high abstraction score, and were trained in earlier epochs.  This allowed the model to converge rapidly, within the first quarter of training the model has a good understanding of the parts it is looking for.  Alternatively, images with many distractors, fewer parts, low contrast, and more blur/distortion were given a low abstraction score, and were fed during the later portion of training.  These \"realer\" images fortified the model, to not just understand the features of the part, but to be able to infer when parts were less visible, or blured. They also  enforced which features were not detections using distractors to prevent false positives.\n"
       },
       {
         "type": "gallery",
@@ -340,6 +215,10 @@
             "caption": "Simulates actual deployment images reinforcing model bahavior."
           }
         ]
+      },
+      {
+        "type": "text",
+        "content": "Models that were generated can be used for any application that requires 6D pose of a part. Applications could include part inspection, line validation/part tracking, typical robotics and humanoid robotics.\n"
       }
     ]
   }

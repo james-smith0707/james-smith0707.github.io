@@ -18,12 +18,20 @@ skills_demonstrated:
 #  github: "https://github.com/yourusername/robotic-arm"
 
 main_media:
-  type: image
+  type: 
   src: "media/projects/robotic-arm/cover.jpg"
   title: "Assembled arm"
   caption: "Full assembly with gripper attachment at rest position."
 
 blocks:
+
+  - type: text
+    content: >
+      This project included an entire ROS stack that bypassed the Cobot's pendant based UI 
+      and interfaced directly with its controller over a LAN connection, and an integrated 
+      a camera streamer, a part detection model, and an aoutomatic calibration sequence. All these features composed
+       a modular robotics system not just a singular automated proccess. 
+
   - type: video
     src: "media/projects/Cobot_OS/Cobot_Layer_Web.mp4"
     title: "Live  Demo with Dashboard"
@@ -31,9 +39,10 @@ blocks:
 
   - type: text
     content: >
-      Developing an entire ROS stack that bypassed the Cobot's pendant based UI 
-      and interfaced directly with its controller over a LAN connection, and by integrating 
-      a camera streamer, I created modular robotics systen not just a singular automated proccess. 
+      One application of the system was to load parts into a convayer fixture with <10mm of tolerence. Firstly the custom trained detection model would be run to
+      locate the each part on the top layer of the bin in depth camera coordinates. Then using the calibrated transformation matrix, their centerpoints and planar rotations 
+      would be transformed into the cobot's base coordinates. Finally the cobot would go to the center position, pick up the part, and load it into the fixture. The detection, coordinate transform
+      and pick up action were all within the required tolerence so that the position of the fixure could be hard coded. 
 
   - type: video
     src: "media/projects/Cobot_OS/Cobot_Calibration_Web.mp4"

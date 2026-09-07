@@ -42,50 +42,12 @@
 
 
 \projectClose
-\projectOpen{3-DOF Desktop Robotic Arm}{Inverse-kinematics-driven pick-and-place arm}{Sep 2025 – Dec 2025}{Robotics, CAD, Kinematics}{SolidWorks, Arduino, Python}
-
-\projectSummary{A three-degree-of-freedom robotic arm with a custom inverse kinematics solver, designed and 3D-printed from scratch for a desktop pick-and-place demo.
-}
-
-\projectPhoto{media/projects/robotic-arm/cover.jpg}{Assembled arm}{Full assembly with gripper attachment at rest position.}
-
-\projectPhoto{media/projects/robotic-arm/cad-overview.png}{CAD overview}{Full linkage assembly modeled before any printing began.}
-
-\projectText{Rather than use a lookup table, I derived closed-form inverse kinematics for the 3-link planar arm so any target (x, y) within the workspace maps directly to joint angles — no iterative solving needed on the microcontroller.}
-
-\projectInteractiveFallback{media/projects/robotic-arm/gripper-jaw-render.png}{Gripper jaw (interactive)}{Drag to rotate — this is the actual print file for the final jaw geometry.}{3D MODEL}
-
-\projectText{The gripper jaw went through four print iterations to get enough compliance to grip irregular objects without a force sensor, using a living-hinge geometry at the jaw base.}
-
-\projectInteractiveFallback{media/projects/robotic-arm/pick-and-place-poster.jpg}{Pick-and-place demo}{Arm sorting objects by color using a webcam and OpenCV.}{VIDEO}
-
-
-\projectClose
-\projectOpen{Camera Harness System For Waterloo Rocketry}{Designed Parts for mounting cameras to a student rocket}{Sep 2025 – April 2026}{CAD, Mechanical Design, Simulation}{SolidWorks, 3D Prototyping}
-
-\projectSummary{A three-degree-of-freedom robotic arm with a custom inverse kinematics solver, designed and 3D-printed from scratch for a desktop pick-and-place demo.
-}
-
-\projectPhoto{media/projects/robotic-arm/cover.jpg}{Assembled arm}{Full assembly with gripper attachment at rest position.}
-
-\projectPhoto{media/projects/robotic-arm/cad-overview.png}{CAD overview}{Full linkage assembly modeled before any printing began.}
-
-\projectText{Rather than use a lookup table, I derived closed-form inverse kinematics for the 3-link planar arm so any target (x, y) within the workspace maps directly to joint angles — no iterative solving needed on the microcontroller.}
-
-\projectInteractiveFallback{media/projects/robotic-arm/gripper-jaw-render.png}{Gripper jaw (interactive)}{Drag to rotate — this is the actual print file for the final jaw geometry.}{3D MODEL}
-
-\projectText{The gripper jaw went through four print iterations to get enough compliance to grip irregular objects without a force sensor, using a living-hinge geometry at the jaw base.}
-
-\projectInteractiveFallback{media/projects/robotic-arm/pick-and-place-poster.jpg}{Pick-and-place demo}{Arm sorting objects by color using a webcam and OpenCV.}{VIDEO}
-
-
-\projectClose
 \projectOpen{CAD to CV model suite}{Synthetic Dataset Generator and Computer Vision Model Training Suite that created detector }{May 2025 – Jul 2025}{Dataset Engineering, Computer Vision, Neural Network Training}{Open CV, RESNET, Ultralytics YOLO, Pytorch}
 
-\projectSummary{A Synthetic Dataset Generator able to create thousands of unique, annotated training images of spesific parts from cad models. A smart dataloader able to train  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. Creating a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model 
+\projectSummary{This project includes a synthetic dataset generator able to create thousands of unique, annotated training images of spesific parts from cad models in minutes. A smart dataloader able to train  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. It can create a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model
 }
 
-\projectPhoto{media/projects/Synthetic_CV/Parts_cropped.mp4}{Test of Both Detection and Orientation Model}{0\% real images trained for this model, pre filtered raw detections}
+\projectPhoto{media/projects/Synthetic_CV/Parts_cropped.mp4}{Test of Both Detection and Orientation Model on Real Frames}{0\% real images trained for this model, pre filtered raw detections}
 
 \projectText{The roposity was a modular tool for rapidly creating and exporting computer vision models custom to company parts using only a CAD file of the part. It allowed the user to upload CAD files and start the automatic generation/training procedure within minutes, completely bypassing the hours of capturing and annotating training images. It was able to create models that preformed better, overall, and on edge cases, than hand trained alternatives.}
 
@@ -95,7 +57,7 @@
 
 \projectPhoto{media/projects/Synthetic_CV/example-render.jpg}{Example Training Rendering}{Randomized training image, can be generated in seconds with annotation.}
 
-\projectText{Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, shadows, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static scenes}
+\projectText{Datasets could be generated using many randomizing features to strengthen the models edge case preformance. Textures, color, lighting, shadows, blur, size, orientation, and visibility could all be  randomized per part, and scenes could be blured, noized, cropped, and augmented for extra randomization.  Distractors were also randomized to prevent false positive detections and the model learning on static sceness}
 
 \begin{projectGallery}{Effect of Cirriculum on Model Training}
 \projectGalleryItem{media/projects/Synthetic_CV/pre-cirriculum-training-crop.png}{Without Cirriculum}{}{0.31}
@@ -108,6 +70,8 @@
 \projectGalleryItem{media/projects/Synthetic_CV/abstract-2.jpg}{High Abstraction Rendering}{Many parts that allow fast learning.}{0.31}
 \projectGalleryItem{media/projects/Synthetic_CV/real-2.jpg}{Low Abstraction Rendering}{Simulates actual deployment images reinforcing model bahavior.}{0.31}
 \end{projectGallery}
+
+\projectText{Models that were generated can be used for any application that requires 6D pose of a part. Applications could include part inspection, line validation/part tracking, typical robotics and humanoid robotics.}
 
 
 \projectClose

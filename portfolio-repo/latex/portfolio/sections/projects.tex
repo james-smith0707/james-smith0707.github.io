@@ -8,9 +8,12 @@
 
 \projectPhoto{media/projects/robotic-arm/cover.jpg}{Assembled arm}{Full assembly with gripper attachment at rest position.}
 
+\projectText{This project included an entire ROS stack that bypassed the Cobot's pendant based UI  and interfaced directly with its controller over a LAN connection, and an integrated  a camera streamer, a part detection model, and an aoutomatic calibration sequence. All these features composed
+ a modular robotics system not just a singular automated proccess.}
+
 \projectInteractiveFallback{}{Live  Demo with Dashboard}{Robot Detecting and Pick/Placing one layer of parts into a fixture with <10mm positional tolerence.}{VIDEO}
 
-\projectText{Developing an entire ROS stack that bypassed the Cobot's pendant based UI  and interfaced directly with its controller over a LAN connection, and by integrating  a camera streamer, I created modular robotics systen not just a singular automated proccess.}
+\projectText{One application of the system was to load parts into a convayer fixture with <10mm of tolerence. Firstly the custom trained detection model would be run to locate the each part on the top layer of the bin in depth camera coordinates. Then using the calibrated transformation matrix, their centerpoints and planar rotations  would be transformed into the cobot's base coordinates. Finally the cobot would go to the center position, pick up the part, and load it into the fixture. The detection, coordinate transform and pick up action were all within the required tolerence so that the position of the fixure could be hard coded.}
 
 \projectInteractiveFallback{}{Automatic Calibration Procedure}{An automated procedure for calculating the matrix transformation mapping camera frame coordinates to robot frame coordinates}{VIDEO}
 
@@ -26,7 +29,7 @@
 \projectPhoto{media/projects/line-follower-robot/cover.jpg}{Final chassis, top view}{Custom PCB mounted above the IR sensor array and drive motors.}
 
 \begin{projectGallery}{Concurrent Proccesses Within the Humanoid Operating System}
-\projectGalleryItem{media/projects/Humanoid_OS/Reasoning_Preview.png}{Reasoning Interface}{Text based Chatbot interface for robot.}{0.31}
+\projectGalleryItem{media/projects/Humanoid_OS/Reasoning_Preview.png}{Reasoning Interface}{Text based Chatbot interface for robot on web based dashboard.}{0.31}
 \projectGalleryItem{media/projects/Humanoid_OS/Lidar_Map_Preview.png}{Lidar Map}{Lidar Pointcloud Projection with Remembered Landmarks.}{0.31}
 \projectGalleryItem{media/projects/Humanoid_OS/Vision_Preview.png}{Robot Perspective Vision}{Live camera feed from the robot with live tracked detections.}{0.31}
 \projectGalleryItem{media/projects/Humanoid_OS/ISSACLAB_Preview.png}{Robots In IssacLab}{Robots developing a RL policy for pressing a button.}{0.31}
@@ -39,6 +42,8 @@
 \projectText{Navigation and Odometry used a two tiered SLAM + April Tag anchor system spesifically designed for a robot on an industrial plant floor with multiple workstations  to precisely navigate to. Data from the Robots LiDAR was projected into a 2D costmap which dynamically stored traversable and non traversable terain, and remembered april tag landmarks. The mapping system  allowed for the use of a tradititional pathing algorithm (A*) for easy map traversal.   The first tier of the navigation included following the A* traversal, with regular route validation and replans to readt to a dynamic enviroment, to a dedicated remembered location where it could visibly see the april tag it was trying to navigate to. Once the desired tag was in view the robot could adjust itself by comparing its current 6D offset vector from the tag to the pre-captured offset vector using the tagas ground truth. This created a simple, yet modualar, interface for teaching the robot new navigation targtets: capture the desired offset, show the tag, and the robot is able to autonomously able to navigate to the new workstation.}
 
 \projectInteractiveFallback{}{Obstacle Avoidance and Workstsation Navigation}{The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag.}{VIDEO}
+
+\projectText{A two tiered perception system was used to join the speed of trained CV models with the intelegence of the onboard VLM. The design of the perception stack was geared towards part inspection, classification, and quality checks. Custom CV models were implameted using an ONNX runtime based detector. These raw bounding box + orientation detections fed through a tracking algorithm that turned  raw, high frequency detections, into sustained object permanance. Using the cameras depth frame, tracked objects could be located in 3D space relative  to the robot, and also in the world coordinate system using simple transforms. The other end of the perception stack was the high level reasoning model. By inerfacing with the QWEN based VLM the robot could asses its surroundings, read instructions, and preform intelegent quality assesments on parts based on official specs. These quality assesments would recive only a crop of a bounding box detection and both text and images of what qualities of the part to judge. Composing these features together the robot could detect a spesific part, locate it 6D space, preform an assesment, and track the part holding onto its judgement.}
 
 
 \projectClose

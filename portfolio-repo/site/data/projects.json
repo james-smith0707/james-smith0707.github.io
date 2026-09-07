@@ -20,12 +20,16 @@
       "Servo control and calibration"
     ],
     "main_media": {
-      "type": "image",
+      "type": null,
       "src": "media/projects/robotic-arm/cover.jpg",
       "title": "Assembled arm",
       "caption": "Full assembly with gripper attachment at rest position."
     },
     "blocks": [
+      {
+        "type": "text",
+        "content": "This project included an entire ROS stack that bypassed the Cobot's pendant based UI  and interfaced directly with its controller over a LAN connection, and an integrated  a camera streamer, a part detection model, and an aoutomatic calibration sequence. All these features composed\n a modular robotics system not just a singular automated proccess. \n"
+      },
       {
         "type": "video",
         "src": "media/projects/Cobot_OS/Cobot_Layer_Web.mp4",
@@ -34,7 +38,7 @@
       },
       {
         "type": "text",
-        "content": "Developing an entire ROS stack that bypassed the Cobot's pendant based UI  and interfaced directly with its controller over a LAN connection, and by integrating  a camera streamer, I created modular robotics systen not just a singular automated proccess. \n"
+        "content": "One application of the system was to load parts into a convayer fixture with <10mm of tolerence. Firstly the custom trained detection model would be run to locate the each part on the top layer of the bin in depth camera coordinates. Then using the calibrated transformation matrix, their centerpoints and planar rotations  would be transformed into the cobot's base coordinates. Finally the cobot would go to the center position, pick up the part, and load it into the fixture. The detection, coordinate transform and pick up action were all within the required tolerence so that the position of the fixure could be hard coded. \n"
       },
       {
         "type": "video",
@@ -88,7 +92,7 @@
           {
             "src": "media/projects/Humanoid_OS/Reasoning_Preview.png",
             "title": "Reasoning Interface",
-            "caption": "Text based Chatbot interface for robot."
+            "caption": "Text based Chatbot interface for robot on web based dashboard."
           },
           {
             "src": "media/projects/Humanoid_OS/Lidar_Map_Preview.png",
@@ -126,6 +130,10 @@
         "src": "media/projects/Humanoid_OS/Humanoid_Nav_1_Web.mp4",
         "title": "Obstacle Avoidance and Workstsation Navigation",
         "caption": "The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag."
+      },
+      {
+        "type": "text",
+        "content": "A two tiered perception system was used to join the speed of trained CV models with the intelegence of the onboard VLM. The design of the perception stack was geared towards part inspection, classification, and quality checks. Custom CV models were implameted using an ONNX runtime based detector. These raw bounding box + orientation detections fed through a tracking algorithm that turned  raw, high frequency detections, into sustained object permanance. Using the cameras depth frame, tracked objects could be located in 3D space relative  to the robot, and also in the world coordinate system using simple transforms. The other end of the perception stack was the high level reasoning model. By inerfacing with the QWEN based VLM the robot could asses its surroundings, read instructions, and preform intelegent quality assesments on parts based on official specs. These quality assesments would recive only a crop of a bounding box detection and both text and images of what qualities of the part to judge. Composing these features together the robot could detect a spesific part, locate it 6D space, preform an assesment, and track the part holding onto its judgement.\n"
       }
     ]
   },

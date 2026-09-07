@@ -1,0 +1,12 @@
+for the next iteration of the repo include these changes
+- video play type yaml param - automatic, boomerang, button, once
+- make videos and photos resized to properly fit the screen, they can be in any aspect ratio
+- text fields can have a title field
+- text reads all the way across the block 
+- new carousel feature that allows users to swipe/click through a carousel of images 
+- stl background field, color or image
+- clean image/video borders
+- more customizations for theme including text sizes
+- bigger text and no table boxes around tags, dates etc at begining of project.
+- more interactive hover/glow etc for clickables
+- seperate resume.yaml with similar block structure, and configs as well

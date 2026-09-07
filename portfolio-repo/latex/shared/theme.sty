@@ -19,3 +19,12 @@
 \IfFontExistsTF{Archivo}{\newfontfamily\displayfont{Archivo}}{\newfontfamily\displayfont{DejaVu Sans}\ClassWarning{theme}{'Archivo' not found, falling back to DejaVu Sans}}
 \IfFontExistsTF{IBM Plex Mono}{\newfontfamily\monofont{IBM Plex Mono}}{\newfontfamily\monofont{DejaVu Sans Mono}\ClassWarning{theme}{'IBM Plex Mono' not found, falling back to DejaVu Sans Mono}}
 \IfFontExistsTF{IBM Plex Sans}{\setmainfont{IBM Plex Sans}}{\setmainfont{DejaVu Sans}\ClassWarning{theme}{'IBM Plex Sans' not found, falling back to DejaVu Sans}}
+
+% --- type scale (from data/theme.yaml type_scale:) — LaTeX size commands ---
+\newcommand{\textHeroTitle}{\Huge}
+\newcommand{\textProjectTitle}{\LARGE}
+\newcommand{\textSectionHeading}{\Large}
+\newcommand{\textMetaLabel}{\normalsize}
+\newcommand{\textBody}{\normalsize}
+\newcommand{\textCaption}{\small}
+\newcommand{\textSmall}{\footnotesize}

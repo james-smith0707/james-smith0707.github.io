@@ -3,7 +3,7 @@ title: "Colaborative Robot Convayer Loader"
 subtitle: "ROS based applicartion integrating a Colaborative Robot with Computer Vision system for an automated convayor loading application"
 dates: "Sep 2025 – Dec 2025"
 tags: ["Manufacturing Automation", "Computer Vision"]
-tools: ["ROS2", "C++", "Python"]
+tools: ["ROS2", "C++", "Python","ONNX Runtime","Ultralytics YOLO"]
 
 short_description: >
   A ROS application for driving a Colaborative Robot, streaming from a RGB-D camera, 
@@ -18,10 +18,13 @@ skills_demonstrated:
 #  github: "https://github.com/yourusername/robotic-arm"
 
 main_media:
-  type: 
-  src: "media/projects/robotic-arm/cover.jpg"
-  title: "Assembled arm"
-  caption: "Full assembly with gripper attachment at rest position."
+    type: video
+    src: "media/projects/Cobot_OS/Cobot_Layer_Web.mp4"
+    title: "Live  Demo with Dashboard"
+    caption: "Robot Detecting and Pick/Placing one layer of parts into a fixture with <10mm positional tolerence."
+    play_type: button
+
+    #pdf_fallback: "media/projects/Cobot_OS/cobot_leyer_preview.png"
 
 blocks:
 
@@ -32,10 +35,6 @@ blocks:
       a camera streamer, a part detection model, and an aoutomatic calibration sequence. All these features composed
        a modular robotics system not just a singular automated proccess. 
 
-  - type: video
-    src: "media/projects/Cobot_OS/Cobot_Layer_Web.mp4"
-    title: "Live  Demo with Dashboard"
-    caption: "Robot Detecting and Pick/Placing one layer of parts into a fixture with <10mm positional tolerence."
 
   - type: text
     content: >
@@ -48,6 +47,7 @@ blocks:
     src: "media/projects/Cobot_OS/Cobot_Calibration_Web.mp4"
     title: "Automatic Calibration Procedure"
     caption: "An automated procedure for calculating the matrix transformation mapping camera frame coordinates to robot frame coordinates"
+    play_type: button
 
   - type: text
     content: >

@@ -1,0 +1,94 @@
+{
+  "config": {
+    "entry_spacing": "6pt",
+    "show_subtitle": true
+  },
+  "sections": [
+    {
+      "id": "education",
+      "heading": "Education",
+      "entries": [
+        {
+          "title": "Program Name, University Name",
+          "dates": "Expected Month Year",
+          "bullets": [
+            "Relevant coursework: Course A, Course B, Course C"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "heading": "Technical Skills",
+      "entries": [
+        {
+          "title": "Languages",
+          "bullets": [
+            "C, C++, Python, MATLAB"
+          ]
+        },
+        {
+          "title": "Tools",
+          "bullets": [
+            "SolidWorks, KiCad, Git, ROS"
+          ]
+        },
+        {
+          "title": "Areas",
+          "bullets": [
+            "Embedded systems, control theory, PCB design, CAD"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "experience",
+      "heading": "Experience",
+      "entries": [
+        {
+          "title": "Mechatronics Intern, Example Robotics Co.",
+          "dates": "May 2025 -- Aug 2025",
+          "bullets": [
+            "Designed and validated a vision-guided pick-and-place fixture, cutting cycle time by 12%.",
+            "Reduced manual changeover steps from 6 to 2 through fixture redesign."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "heading": "Projects",
+      "entries": [
+        {
+          "title": "Autonomous Line-Following Robot",
+          "dates": "Jan 2026 -- Mar 2026",
+          "bullets": [
+            "Designed a PID-controlled line-following robot with gain scheduling, improving lap times 38%.",
+            "Fabricated and populated a custom PCB for the sensor array and motor drivers."
+          ]
+        },
+        {
+          "title": "3-DOF Desktop Robotic Arm",
+          "dates": "Sep 2025 -- Dec 2025",
+          "bullets": [
+            "Derived closed-form inverse kinematics for a 3-link planar arm.",
+            "Iterated a compliant 3D-printed gripper jaw through four print revisions."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leadership",
+      "heading": "Leadership & Activities",
+      "entries": [
+        {
+          "title": "Formula SAE \u2014 Electronics Lead",
+          "dates": "Sep 2025 -- Present",
+          "bullets": [
+            "Lead a 4-person subteam designing the car's CAN bus telemetry network."
+          ]
+        }
+      ]
+    }
+  ]
+}

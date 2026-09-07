@@ -7,12 +7,12 @@
 # Edit here, run scripts/build.py, everything updates.
 # ============================================================
 
-name: "James Smith"
-tagline: "Mechatronics Engineering Student at the University of waterloo"
-location: "Waterloo, ON"
+name: "Your Name"
+tagline: "Mechatronics Engineering Student"
+location: "Toronto, ON"
 
 email: "you@example.com"
-#phone: "+1 (555) 555-5555"
+phone: "+1 (555) 555-5555"
 
 links:
   github: "https://github.com/yourusername"

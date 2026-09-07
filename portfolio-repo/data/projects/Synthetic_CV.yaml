@@ -7,12 +7,13 @@ tools: ["Open CV", "RESNET", "Ultralytics YOLO", "Pytorch"]
 
 short_description: >
   This project includes a synthetic dataset generator able to create thousands of unique, annotated training images of spesific parts from cad models in minutes. A smart dataloader able to train 
-  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. It can create a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation detector model
+  Ultralytics YOLO CV models on randomized data sets based on a learning curve optimizing cirriculum. It can create a pair of neural networks, a YOLO based bounding box detector,and a RESNET based 3D angular orientation regression model.
  
 
 skills_demonstrated:
-  - "AI Training Dataset Engineering"
+  - "Dataset Engineering"
   - "Computer Vision Model Training"
+  - "Neural Network Manipulation"
 
 #links:
 #  github: "https://github.com/yourusername/pcb-sensor-hub"
@@ -22,7 +23,9 @@ main_media:
   src: "media/projects/Synthetic_CV/Parts_cropped.mp4"
   title: "Test of Both Detection and Orientation Model on Real Frames"
   caption: "0% real images trained for this model, pre filtered raw detections"
-  pdf_fallback: "media/projects/Synthetic_CV/detections_preview.mp4"
+  #pdf_fallback: "media/projects/Synthetic_CV/detections_preview.png"
+  play_type: button
+
 
 blocks:
 
@@ -36,6 +39,8 @@ blocks:
     src: "media/projects/Synthetic_CV/toss-1.mp4"
     title: "Real Time Detection and Orientation Regression"
     caption: ""
+    play_type: button
+
   
   - type: text
     content: >
@@ -87,5 +92,6 @@ blocks:
 
   - type: text
     content: >
-      Models that were generated can be used for any application that requires 6D pose of a part. Applications could include part inspection, line validation/part tracking, typical robotics and humanoid robotics.
+      Models that were generated can be used for any application that requires 6D pose of a part. 
+      Applications could include part inspection, line validation/part tracking, typical robotics and humanoid robotics.
 

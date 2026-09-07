@@ -7,28 +7,29 @@
 
 \RequirePackage{theme}
 \RequirePackage{graphicx}
-\RequirePackage{tabularx}
-\RequirePackage{array}
 \RequirePackage[skip=4pt]{caption}
 \RequirePackage{enumitem}
 \RequirePackage{hyperref}
 \RequirePackage{etoolbox}
 
+% length used by \fboxrule for the uniform media border treatment
+\newlength{\mediaBorderWidth}
+\setlength{\mediaBorderWidth}{0.6pt}
+
 % ---- project title block -------------------------------------------
-% Mimics an engineering drawing's title block: a small metadata table
-% instead of a plain heading + subheading.
+% Plain stacked metadata lines — no table/box borders, larger text
+% (uses \textProjectTitle / \textMetaLabel from theme.sty's type scale,
+% itself generated from data/theme.yaml's type_scale: block).
 \newcommand{\projectOpen}[5]{%
   % #1 title  #2 subtitle  #3 dates  #4 tags (comma list)  #5 tools (comma list)
   \vspace{1.2em}
-  {\displayfont\bfseries\Large #1}\\[2pt]
-  {\color{steel700}\itshape #2}\\[6pt]
+  {\displayfont\bfseries\textProjectTitle #1}\\[3pt]
+  {\color{steel700}\itshape\textMetaLabel #2}\\[8pt]
   \noindent
-  \begin{tabularx}{\linewidth}{@{}>{\monofont\footnotesize\color{steel700}}l X@{}}
-    DATES & #3 \\
-    \ifblank{#4}{}{TAGS  & #4 \\}
-    \ifblank{#5}{}{TOOLS & #5 \\}
-  \end{tabularx}
-  \vspace{0.6em}
+  {\monofont\textMetaLabel\color{blueprint500}DATES}\quad{\textMetaLabel #3}\\[3pt]
+  \ifblank{#4}{}{{\monofont\textMetaLabel\color{blueprint500}TAGS}\quad{\textMetaLabel #4}\\[3pt]}
+  \ifblank{#5}{}{{\monofont\textMetaLabel\color{blueprint500}TOOLS}\quad{\textMetaLabel #5}\\[3pt]}
+  \vspace{0.5em}
   {\color{blueprint500}\hrule height 0.6pt}
   \vspace{0.8em}
 }
@@ -39,42 +40,49 @@
 \newcommand{\entryOpen}[4]{%
   % #1 title  #2 subtitle  #3 dates  #4 org
   \vspace{1.2em}
-  {\displayfont\bfseries\Large #1}\\[2pt]
-  {\color{steel700}\itshape #2}\\[6pt]
+  {\displayfont\bfseries\textProjectTitle #1}\\[3pt]
+  {\color{steel700}\itshape\textMetaLabel #2}\\[8pt]
   \noindent
-  \begin{tabularx}{\linewidth}{@{}>{\monofont\footnotesize\color{steel700}}l X@{}}
-    DATES & #3 \\
-    \ifblank{#4}{}{ORG   & #4 \\}
-  \end{tabularx}
-  \vspace{0.6em}
+  {\monofont\textMetaLabel\color{blueprint500}DATES}\quad{\textMetaLabel #3}\\[3pt]
+  \ifblank{#4}{}{{\monofont\textMetaLabel\color{blueprint500}ORG}\quad{\textMetaLabel #4}\\[3pt]}
+  \vspace{0.5em}
   {\color{blueprint500}\hrule height 0.6pt}
   \vspace{0.8em}
 }
 
 \newcommand{\projectSummary}[1]{%
-  \noindent #1\par\vspace{0.8em}
+  \noindent\textBody #1\par\vspace{0.8em}
 }
 
-% ---- block: text -----------------------------------------------------
-\newcommand{\projectText}[1]{%
-  \noindent #1\par\vspace{0.8em}
+% ---- block: text — optional title above the paragraph, text runs the
+% full block width (no narrow-column restriction) --------------------
+% #1 title (may be empty)  #2 content
+\newcommand{\projectText}[2]{%
+  \ifblank{#1}{}{{\displayfont\bfseries\textMetaLabel\color{graphite900} #1}\\[4pt]}
+  \noindent\textBody #2\par\vspace{0.8em}
 }
 
 % ---- block: photo -----------------------------------------------------
 % #1 image path  #2 title  #3 caption
+% width capped so any aspect ratio (portrait, panorama, square) sits
+% cleanly on the page without distortion; graphicx keeps aspect ratio
+% automatically when only one of width/height is given.
 \newcommand{\projectPhoto}[3]{%
   \begin{center}
-    \includegraphics[width=0.85\linewidth]{#1}\\[2pt]
-    {\monofont\footnotesize\color{blueprint500} #2}\\
-    {\footnotesize\color{steel700} #3}
+    \fboxsep=0pt\fboxrule=\mediaBorderWidth
+    \fcolorbox{steel700}{white}{%
+      \includegraphics[width=0.85\linewidth,height=0.6\textheight,keepaspectratio]{#1}%
+    }\\[4pt]
+    {\monofont\textCaption\color{blueprint500} #2}\\
+    {\textCaption\color{steel700} #3}
   \end{center}
   \vspace{0.8em}
 }
 
-% ---- block: gallery ----------------------------------------------------
-% Opens/closes a row; place \projectGalleryItem calls between.
+% ---- block: gallery / carousel (carousel is interactive on the site;
+% the PDF shows it as the same static grid as a gallery) ---------------
 \newenvironment{projectGallery}[1]{%
-  {\monofont\footnotesize\color{blueprint500} #1}\\[4pt]
+  {\monofont\textMetaLabel\color{blueprint500} #1}\\[4pt]
   \noindent
 }{%
   \vspace{0.8em}
@@ -83,7 +91,8 @@
 \newcommand{\projectGalleryItem}[4]{%
   \begin{minipage}[t]{#4\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{#1}\\[2pt]
+    \fboxsep=0pt\fboxrule=\mediaBorderWidth
+    \fcolorbox{steel700}{white}{\includegraphics[width=\linewidth]{#1}}\\[3pt]
     {\monofont\tiny\color{blueprint500} #2}\\
     {\tiny\color{steel700} #3}
   \end{minipage}\hfill
@@ -94,10 +103,13 @@
 % #1 fallback image  #2 title  #3 caption  #4 kind label ("VIDEO" / "3D MODEL")
 \newcommand{\projectInteractiveFallback}[4]{%
   \begin{center}
-    \includegraphics[width=0.7\linewidth]{#1}\\[2pt]
-    {\monofont\footnotesize\color{signalamber} [#4 — VIEW INTERACTIVE ON SITE]}\\
-    {\monofont\footnotesize\color{blueprint500} #2}\\
-    {\footnotesize\color{steel700} #3}
+    \fboxsep=0pt\fboxrule=\mediaBorderWidth
+    \fcolorbox{steel700}{white}{%
+      \includegraphics[width=0.7\linewidth,height=0.5\textheight,keepaspectratio]{#1}%
+    }\\[4pt]
+    {\monofont\textCaption\color{signalamber} [#4 --- VIEW INTERACTIVE ON SITE]}\\
+    {\monofont\textCaption\color{blueprint500} #2}\\
+    {\textCaption\color{steel700} #3}
   \end{center}
   \vspace{0.8em}
 }

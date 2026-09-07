@@ -1,0 +1,17 @@
+((* for section in sections *))
+\section*{(((section.heading|tex)))}
+((* for e in section.get('entries', []) *))
+\textbf{(((e.title|tex)))}((* if e.get('dates') *)) \hfill (((e.dates|tex)))((* endif *)) \\
+((* if config.get('show_subtitle', true) and e.get('subtitle') *))
+{\itshape (((e.subtitle|tex)))} \\
+((* endif *))
+((* if e.get('bullets') *))
+\begin{itemize}
+((* for b in e['bullets'] *))
+  \item (((b|tex)))
+((* endfor *))
+\end{itemize}
+((* endif *))
+\vspace{(((config.get('entry_spacing', '4pt')))) }
+((* endfor *))
+((* endfor *))

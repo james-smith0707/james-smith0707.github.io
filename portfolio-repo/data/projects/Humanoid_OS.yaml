@@ -9,8 +9,8 @@ slug: Humanoid_OS
 title: "Humanoid Robot Operating System"
 subtitle: "Lead software development for humanoid robot"
 dates: "Jan 2026 – Mar 2026"
-tags: ["Autonomus Humanoid Robotics", "Reinforcement Learning", ""]
-tools: ["ROS", "NVDIA IssacLab", "C"]
+tags: ["Autonomus Humanoid Robotics", "Reinforcement Learning", "Real Time Operating System Design"]
+tools: ["ROS2", "NVDIA IssacLab", "C++","Python"]
 
 short_description: >
   A ROS2 based operating system for controlling a humanoid robot. Composing Computer Vision, 
@@ -72,6 +72,7 @@ blocks:
     src: "media/projects/Humanoid_OS/Humanoid_Nav_2_Web.mp4"
     title: "Three Station Navigation"
     caption: "The Robot planning a workflow to visit three workstations, based on a text prompt, then going to all three."
+    play_type: automatic
 
   - type: text
     content: >
@@ -86,6 +87,7 @@ blocks:
     src: "media/projects/Humanoid_OS/Humanoid_Nav_1_Web.mp4"
     title: "Obstacle Avoidance and Workstsation Navigation"
     caption: "The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag."
+    play_type: button
 
   - type: text
     content: >
@@ -95,6 +97,19 @@ blocks:
       to the robot, and also in the world coordinate system using simple transforms. The other end of the perception stack was the high level reasoning model. By inerfacing with the QWEN based VLM the robot could asses its surroundings, read instructions, and preform
       intelegent quality assesments on parts based on official specs. These quality assesments would recive only a crop of a bounding box detection and both text and images of what qualities of the part to judge. Composing these features together the robot could detect a spesific part, locate it 6D space, preform an assesment, and track the part holding
       onto its judgement.
+
+  - type: gallery
+    title: "Simulation and Real Robot Executing A Button Press"
+    items:
+      - src: "media/projects/Humanoid_OS/Reasoning_Preview.png"
+        title: "Reasoning Interface"
+        caption: "Text based Chatbot interface for robot on web based dashboard."
+      - src: "media/projects/Humanoid_OS/Lidar_Map_Preview.png"
+        title: "Lidar Map"
+        caption: "Lidar Pointcloud Projection with Remembered Landmarks."
+
+
+  
 
   
 

@@ -11,5 +11,22 @@
   --font-mono: 'IBM Plex Mono', monospace;
   --content-max-width: 1100px;
   --grid-unit: 8px;
-  --radius-base: 2px;
+  --radius-base: 3px;
+  --text-hero-title: 3.2rem;
+  --text-project-title: 2rem;
+  --text-section-heading: 0.95rem;
+  --text-meta-label: 0.85rem;
+  --text-body: 1.05rem;
+  --text-caption: 0.88rem;
+  --text-small: 0.78rem;
+  --line-height-heading: 1.1;
+  --line-height-body: 1.6;
+  --media-border-color: #3D4650;
+  --media-border-width: 1px;
+  --media-frame-bg: #1C1F22;
+  --media-max-height: 70vh;
+  --glow-color: #235789;
+  --glow-strength: 0 0 0 3px;
+  --hover-lift: -3px;
+  --hover-transition: 160ms ease;
 }

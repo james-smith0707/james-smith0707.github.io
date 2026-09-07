@@ -10,7 +10,8 @@ body {
   font-family: var(--font-body);
   background: var(--color-fog-100);
   color: var(--color-graphite-900);
-  line-height: 1.55;
+  line-height: var(--line-height-body);
+  font-size: var(--text-body);
 }
 
 .wrap {
@@ -19,9 +20,13 @@ body {
   padding: 0 24px;
 }
 
-a { color: var(--color-blueprint-500); text-decoration: none; }
-a:hover { text-decoration: underline; }
-a:focus-visible, button:focus-visible {
+a {
+  color: var(--color-blueprint-500);
+  text-decoration: none;
+  transition: color var(--hover-transition), text-shadow var(--hover-transition);
+}
+a:hover { text-decoration: underline; text-shadow: 0 0 8px color-mix(in srgb, var(--glow-color) 55%, transparent); }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
   outline: 2px solid var(--color-blueprint-500);
   outline-offset: 2px;
 }
@@ -64,8 +69,19 @@ a:focus-visible, button:focus-visible {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: var(--color-steel-700);
+  position: relative;
 }
-.site-header nav a:hover { color: var(--color-blueprint-500); }
+.site-header nav a:hover { color: var(--color-blueprint-500); text-shadow: none; }
+.site-header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -3px;
+  height: 1px;
+  background: var(--color-blueprint-500);
+  transition: right var(--hover-transition);
+}
+.site-header nav a:hover::after { right: 0; }
 
 /* ---------- hero (rotating STL is the hero, not a headline+gradient) ---------- */
 .hero {
@@ -80,14 +96,14 @@ a:focus-visible, button:focus-visible {
 }
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.08;
+  font-size: var(--text-hero-title);
+  line-height: var(--line-height-heading);
   margin: 0 0 14px;
   color: var(--color-graphite-900);
 }
 .hero .tagline {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: var(--text-body);
   color: var(--color-blueprint-500);
   margin: 0 0 18px;
 }
@@ -98,23 +114,26 @@ a:focus-visible, button:focus-visible {
 .hero-links { margin-top: 22px; display: flex; gap: 20px; flex-wrap: wrap; }
 .hero-links a {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: var(--text-caption);
 }
 
 .hero-model {
   aspect-ratio: 1 / 1;
-  background: var(--color-graphite-900);
+  background: var(--media-frame-bg);
+  border: var(--media-border-width) solid var(--media-border-color);
   border-radius: var(--radius-base);
   position: relative;
   overflow: hidden;
+  transition: box-shadow var(--hover-transition);
 }
+.hero-model:hover { box-shadow: var(--glow-strength) color-mix(in srgb, var(--glow-color) 35%, transparent); }
 .hero-model canvas { display: block; width: 100%; height: 100%; }
 .hero-model .model-caption {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 10px 14px;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--text-small);
   color: var(--color-fog-100);
   background: linear-gradient(transparent, rgba(0,0,0,0.55));
 }
@@ -122,7 +141,7 @@ a:focus-visible, button:focus-visible {
 /* ---------- section headings ---------- */
 .section-heading {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--text-section-heading);
   color: var(--color-blueprint-500);
   margin: 0 0 24px;
   display: flex;
@@ -151,13 +170,24 @@ a:focus-visible, button:focus-visible {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform var(--hover-transition), box-shadow var(--hover-transition), border-color var(--hover-transition);
+}
+.project-card:hover {
+  transform: translateY(var(--hover-lift));
+  border-color: var(--color-blueprint-500);
+  box-shadow: var(--glow-strength) color-mix(in srgb, var(--glow-color) 30%, transparent), 0 10px 24px rgba(0,0,0,0.12);
 }
 .project-card .thumb {
   aspect-ratio: 16 / 10;
-  background: var(--color-graphite-900);
+  background: var(--media-frame-bg);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.project-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* object-fit: contain so any aspect ratio (portrait, panorama, square)
+   frames cleanly with letterboxing instead of being cropped/distorted */
+.project-card .thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .project-card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .project-card h3 {
   font-family: var(--font-display);
@@ -179,53 +209,87 @@ a:focus-visible, button:focus-visible {
   border: 1px solid var(--color-steel-700);
   border-radius: var(--radius-base);
   padding: 2px 6px;
+  transition: color var(--hover-transition), border-color var(--hover-transition);
 }
+.project-card:hover .tag { border-color: var(--color-blueprint-500); color: var(--color-blueprint-500); }
 
-/* ---------- title block (mirrors LaTeX's engineering-drawing metadata table) ---------- */
+/* ---------- title block: project metadata (dates/tags/tools) ----------
+   Plain stacked lines, bigger text, NO grid/table borders — mirrors the
+   LaTeX portfolio's \projectOpen macro (also borderless as of this pass). */
 .title-block {
-  border: 1px solid var(--color-steel-700);
-  border-radius: var(--radius-base);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--text-meta-label);
 }
-.title-block dl { display: grid; grid-template-columns: 90px 1fr; gap: 0; margin: 0; }
+.title-block dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; }
 .title-block dt {
-  padding: 8px 12px;
   color: var(--color-blueprint-500);
-  border-top: 1px solid var(--color-steel-700);
-  border-right: 1px solid var(--color-steel-700);
+  font-weight: 500;
 }
 .title-block dd {
   margin: 0;
-  padding: 8px 12px;
-  border-top: 1px solid var(--color-steel-700);
   color: var(--color-steel-700);
 }
-.title-block dt:first-child, .title-block dd:first-of-type { border-top: none; }
 
 /* ---------- project detail page blocks ---------- */
 .project-header { padding: 48px 0 0; }
 .project-header h1 {
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  font-size: var(--text-project-title);
+  line-height: var(--line-height-heading);
   margin: 0 0 6px;
 }
-.project-header .subtitle { color: var(--color-steel-700); font-style: italic; margin: 0 0 20px; }
+.project-header .subtitle {
+  color: var(--color-steel-700);
+  font-style: italic;
+  font-size: var(--text-meta-label);
+  margin: 0 0 20px;
+}
 .project-body { padding-bottom: 72px; }
 .block { margin: 0 0 40px; }
+.block-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-meta-label);
+  color: var(--color-graphite-900);
+  margin: 0 0 10px;
+}
 .block-caption-title {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--text-caption);
   color: var(--color-blueprint-500);
   margin: 10px 0 2px;
 }
-.block-caption-text { font-size: 0.85rem; color: var(--color-steel-700); margin: 0; }
-.block img, .block video { width: 100%; border-radius: var(--radius-base); display: block; }
-.block-text p { max-width: 68ch; }
+.block-caption-text { font-size: var(--text-caption); color: var(--color-steel-700); margin: 0; }
 
-.gallery-heading {
+/* ---------- uniform media framing ----------
+   object-fit: contain + a bounded max-height means any aspect ratio
+   (portrait, panorama, square, whatever) sits fully visible and
+   undistorted, letterboxed on the frame background, with a clean
+   consistent border — instead of being force-cropped to a fixed ratio. */
+.media-frame {
+  background: var(--media-frame-bg);
+  border: var(--media-border-width) solid var(--media-border-color);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: var(--media-max-height);
+  transition: box-shadow var(--hover-transition);
+}
+.media-frame img, .media-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: var(--media-max-height);
+  object-fit: contain;
+}
+.block-text { max-width: none; }   /* text blocks run the full block width, no narrow-column cap */
+.block-text p { max-width: none; margin: 0; }
+
+.gallery-heading, .carousel-heading {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--text-caption);
   color: var(--color-blueprint-500);
   margin: 0 0 12px;
 }
@@ -235,20 +299,121 @@ a:focus-visible, button:focus-visible {
   gap: 18px;
 }
 .gallery-item figure { margin: 0; }
+.gallery-item .media-frame { aspect-ratio: 4 / 3; max-height: none; }
+
+/* ---------- carousel: swipe/click through a set of images ---------- */
+.carousel { position: relative; }
+.carousel-viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-base);
+}
+.carousel-track {
+  display: flex;
+  transition: transform 320ms ease;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.carousel-track:active { cursor: grabbing; }
+.carousel-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+.carousel-slide .media-frame { max-height: var(--media-max-height); aspect-ratio: 16 / 10; }
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  pointer-events: none;
+}
+.carousel-btn {
+  pointer-events: auto;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--color-steel-700);
+  background: color-mix(in srgb, var(--color-graphite-900) 55%, transparent);
+  color: var(--color-fog-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: box-shadow var(--hover-transition), border-color var(--hover-transition), background var(--hover-transition);
+}
+.carousel-btn:hover {
+  border-color: var(--color-blueprint-500);
+  box-shadow: var(--glow-strength) color-mix(in srgb, var(--glow-color) 45%, transparent);
+  background: color-mix(in srgb, var(--color-graphite-900) 80%, transparent);
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.carousel-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-steel-700);
+  opacity: 0.45;
+  cursor: pointer;
+  transition: opacity var(--hover-transition), box-shadow var(--hover-transition), background var(--hover-transition);
+}
+.carousel-dot:hover { opacity: 0.8; box-shadow: var(--glow-strength) color-mix(in srgb, var(--glow-color) 40%, transparent); }
+.carousel-dot.active { opacity: 1; background: var(--color-blueprint-500); }
+.carousel-caption { margin-top: 10px; text-align: center; }
+
+/* ---------- video play-button overlay (play_type: button) ---------- */
+.video-wrap { position: relative; }
+.video-play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  border: none;
+  cursor: pointer;
+  transition: background var(--hover-transition);
+}
+.video-play-btn:hover { background: rgba(0,0,0,0.4); }
+.video-play-btn .play-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-graphite-900) 70%, transparent);
+  border: 1px solid var(--color-fog-100);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-fog-100);
+  font-size: 1.6rem;
+  transition: box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+.video-play-btn:hover .play-icon {
+  box-shadow: var(--glow-strength) color-mix(in srgb, var(--glow-color) 55%, transparent);
+  transform: scale(1.06);
+}
 
 .model-block {
   aspect-ratio: 4 / 3;
-  background: var(--color-graphite-900);
+  background: var(--media-frame-bg);
+  border: var(--media-border-width) solid var(--media-border-color);
   border-radius: var(--radius-base);
   position: relative;
   overflow: hidden;
+  transition: box-shadow var(--hover-transition);
 }
+.model-block:hover { box-shadow: var(--glow-strength) color-mix(in srgb, var(--glow-color) 30%, transparent); }
 .model-block canvas { display: block; width: 100%; height: 100%; }
 .model-block .model-hint {
   position: absolute;
   top: 10px; right: 12px;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--text-small);
   color: var(--color-fog-100);
   opacity: 0.65;
 }

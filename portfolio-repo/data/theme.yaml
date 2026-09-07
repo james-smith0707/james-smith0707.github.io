@@ -2,7 +2,7 @@
 # Single source of truth for visual theme.
 # build.py reads this and generates:
 #   site/css/theme-vars.css   (CSS custom properties)
-#   latex/shared/theme.sty    (xcolor + font setup)
+#   latex/shared/theme.sty    (xcolor + font setup + size commands)
 # Change a value here, run scripts/build.py, both outputs update.
 # ============================================================
 
@@ -12,7 +12,7 @@ colors:
   slate-400:    "#7C8894"   # muted text, captions
   fog-100:      "#EDEFF1"   # light neutral background
   paper:        "#FFFFFF"   # cards / panels on light background
-  blueprint-500: "#235789"  # single accent — links, active states, title-block rules
+  blueprint-500: "#235789"  # single accent — links, active states, rules
   signal-amber:  "#D98E3B"  # sparse use only — CTA / current-state highlight
 
 fonts:
@@ -28,7 +28,22 @@ fonts:
     family: "IBM Plex Mono"
     weights: [400, 500]
     google_fonts_id: "IBM+Plex+Mono:wght@400;500"
-    usage: "title-block labels, tags, code, data"
+    usage: "metadata labels, tags, code, data"
+
+# Type scale — edit these to change text sizing sitewide/PDF-wide without
+# touching any CSS or LaTeX by hand. "site" values are CSS sizes (any
+# unit); "pdf" values must be valid LaTeX font-size commands.
+type_scale:
+  hero_title:      { site: "3.2rem",   pdf: "\\Huge" }
+  project_title:   { site: "2rem",     pdf: "\\LARGE" }
+  section_heading: { site: "0.95rem",  pdf: "\\Large" }
+  meta_label:      { site: "0.85rem",  pdf: "\\normalsize" }   # DATES/TAGS/TOOLS — bigger + no box now
+  body:            { site: "1.05rem",  pdf: "\\normalsize" }
+  caption:         { site: "0.88rem",  pdf: "\\small" }
+  small:           { site: "0.78rem",  pdf: "\\footnotesize" }
+line_height:
+  heading: 1.1
+  body: 1.6
 
 layout:
   content_max_width: "1100px"
@@ -36,4 +51,18 @@ layout:
   divider_style: "dimension-line"   # thin rule with small tick marks at each end
 
 radius:
-  base: "2px"    # deliberately near-square — drafting-tool feel, not SaaS rounded cards
+  base: "3px"    # deliberately near-square — drafting-tool feel, not SaaS rounded cards
+
+media:
+  # Uniform framing applied to every embedded photo/video/model/carousel item.
+  border_color: "steel-700"   # references a name from colors: above
+  border_width: "1px"
+  frame_bg: "graphite-900"    # letterbox background behind contain-fit media
+  max_height: "70vh"          # media never grows taller than this regardless of aspect ratio
+
+interaction:
+  # hover/focus treatment for clickable elements (cards, links, buttons, carousel controls)
+  glow_color: "blueprint-500"
+  glow_strength: "0 0 0 3px"   # box-shadow spread used for the glow ring
+  lift: "-3px"                  # translateY on hover for cards
+  transition: "160ms ease"

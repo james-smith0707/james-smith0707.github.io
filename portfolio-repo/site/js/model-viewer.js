@@ -15,6 +15,21 @@
     const src = container.getAttribute('data-model-src');
     if (!src || typeof THREE === 'undefined') return;
 
+    // Optional per-model background: a CSS color (e.g. "#0B1116") or an
+    // image path/URL. Falls back to the theme's default frame background
+    // (set in CSS) if not provided.
+    const bg = container.getAttribute('data-model-bg');
+    if (bg) {
+      const looksLikeColor = /^#|^rgb|^hsl|^[a-z]+$/i.test(bg.trim()) && !/\.(png|jpe?g|webp|gif|svg)$/i.test(bg);
+      if (looksLikeColor) {
+        container.style.background = bg;
+      } else {
+        container.style.backgroundImage = `url("${bg}")`;
+        container.style.backgroundSize = 'cover';
+        container.style.backgroundPosition = 'center';
+      }
+    }
+
     const width = container.clientWidth;
     const height = container.clientHeight;
 

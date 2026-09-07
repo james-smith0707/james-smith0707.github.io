@@ -32,16 +32,17 @@ SITE = ROOT / "site"
 LATEX = ROOT / "latex"
 TEMPLATES = LATEX / "portfolio" / "templates"
 
-VALID_BLOCK_TYPES = {"text", "photo", "gallery", "video", "stl"}
+VALID_BLOCK_TYPES = {"text", "photo", "gallery", "carousel", "video", "stl"}
+VALID_VIDEO_PLAY_TYPES = {"automatic", "boomerang", "button", "once"}
 
 
-def make_tex_env() -> Environment:
+def make_tex_env(template_dir: Path) -> Environment:
     """
     Jinja2 env with delimiters that don't collide with LaTeX's { } syntax.
     In .tex.j2 templates use:  (((variable)))   ((* for/if *))   ((= comment =))
     """
     env = Environment(
-        loader=FileSystemLoader(str(TEMPLATES)),
+        loader=FileSystemLoader(str(template_dir)),
         block_start_string="((*",
         block_end_string="*))",
         variable_start_string="(((",
@@ -92,6 +93,14 @@ def build_theme():
     fonts = theme["fonts"]
     layout = theme["layout"]
     radius = theme["radius"]
+    type_scale = theme.get("type_scale", {})
+    line_height = theme.get("line_height", {})
+    media = theme.get("media", {})
+    interaction = theme.get("interaction", {})
+
+    def color_ref(name: str) -> str:
+        """Resolve a color name from theme.yaml's colors: block to its hex value."""
+        return colors.get(name, name)
 
     # --- CSS custom properties ---
     css_lines = [":root {"]
@@ -103,6 +112,21 @@ def build_theme():
     css_lines.append(f"  --content-max-width: {layout['content_max_width']};")
     css_lines.append(f"  --grid-unit: {layout['grid_unit']};")
     css_lines.append(f"  --radius-base: {radius['base']};")
+    # type scale
+    for key, sizes in type_scale.items():
+        css_lines.append(f"  --text-{key.replace('_', '-')}: {sizes['site']};")
+    css_lines.append(f"  --line-height-heading: {line_height.get('heading', 1.15)};")
+    css_lines.append(f"  --line-height-body: {line_height.get('body', 1.6)};")
+    # media framing
+    css_lines.append(f"  --media-border-color: {color_ref(media.get('border_color', 'steel-700'))};")
+    css_lines.append(f"  --media-border-width: {media.get('border_width', '1px')};")
+    css_lines.append(f"  --media-frame-bg: {color_ref(media.get('frame_bg', 'graphite-900'))};")
+    css_lines.append(f"  --media-max-height: {media.get('max_height', '70vh')};")
+    # interaction
+    css_lines.append(f"  --glow-color: {color_ref(interaction.get('glow_color', 'blueprint-500'))};")
+    css_lines.append(f"  --glow-strength: {interaction.get('glow_strength', '0 0 0 3px')};")
+    css_lines.append(f"  --hover-lift: {interaction.get('lift', '-3px')};")
+    css_lines.append(f"  --hover-transition: {interaction.get('transition', '160ms ease')};")
     css_lines.append("}")
     css_out = SITE / "css" / "theme-vars.css"
     css_out.parent.mkdir(parents=True, exist_ok=True)
@@ -144,7 +168,12 @@ def build_theme():
         f"{{\\setmainfont{{{fonts['body']['family']}}}}}"
         f"{{\\setmainfont{{DejaVu Sans}}\\ClassWarning{{theme}}"
         f"{{'{fonts['body']['family']}' not found, falling back to DejaVu Sans}}}}",
+        "",
+        "% --- type scale (from data/theme.yaml type_scale:) — LaTeX size commands ---",
     ]
+    for key, sizes in type_scale.items():
+        camel = "".join(w.capitalize() for w in key.split("_"))
+        tex_lines.append(f"\\newcommand{{\\text{camel}}}{{{sizes['pdf']}}}")
     sty_out = LATEX / "shared" / "theme.sty"
     sty_out.parent.mkdir(parents=True, exist_ok=True)
     sty_out.write_text("\n".join(tex_lines) + "\n", encoding="utf-8")
@@ -166,8 +195,21 @@ def validate_project(proj: dict, path: Path):
                 f"ERROR: {path.name} has block type '{block.get('type')}' — "
                 f"must be one of {sorted(VALID_BLOCK_TYPES)}"
             )
-        if block["type"] == "gallery" and "items" not in block:
-            sys.exit(f"ERROR: {path.name} gallery block is missing 'items'")
+        if block["type"] in ("gallery", "carousel") and "items" not in block:
+            sys.exit(f"ERROR: {path.name} {block['type']} block is missing 'items'")
+        if block["type"] == "video" and "play_type" in block:
+            if block["play_type"] not in VALID_VIDEO_PLAY_TYPES:
+                sys.exit(
+                    f"ERROR: {path.name} video block has play_type '{block['play_type']}' — "
+                    f"must be one of {sorted(VALID_VIDEO_PLAY_TYPES)}"
+                )
+    mm = proj.get("main_media")
+    if mm and mm.get("type") == "video" and "play_type" in mm:
+        if mm["play_type"] not in VALID_VIDEO_PLAY_TYPES:
+            sys.exit(
+                f"ERROR: {path.name} main_media video has play_type '{mm['play_type']}' — "
+                f"must be one of {sorted(VALID_VIDEO_PLAY_TYPES)}"
+            )
 
 
 def build_projects():
@@ -185,7 +227,7 @@ def build_projects():
     print(f"  wrote {json_out.relative_to(ROOT)} ({len(projects)} project(s))")
 
     # --- LaTeX projects.tex via Jinja2 template ---
-    env = make_tex_env()
+    env = make_tex_env(TEMPLATES)
     template = env.get_template("project_block.tex.j2")
 
     rendered = "\n".join(template.render(p=p) for p in projects)
@@ -213,7 +255,7 @@ def build_simple_section(data_file: str, template_name: str, tex_out_name: str, 
     json_out.write_text(json.dumps(entries, indent=2), encoding="utf-8")
     print(f"  wrote {json_out.relative_to(ROOT)}")
 
-    env = make_tex_env()
+    env = make_tex_env(TEMPLATES)
     template = env.get_template(template_name)
     rendered = template.render(entries=entries)
     tex_out = LATEX / "portfolio" / "sections" / tex_out_name
@@ -269,6 +311,42 @@ def build_media():
     print(f"  copied {src.relative_to(ROOT)} -> {dst.relative_to(ROOT)}")
 
 
+# ------------------------------------------------------------
+# 4. RESUME — block-structured like projects, drives resume.tex
+# ------------------------------------------------------------
+
+RESUME_TEMPLATES = LATEX / "resume" / "templates"
+
+
+def build_resume():
+    path = DATA / "resume.yaml"
+    if not path.exists():
+        return
+    resume = load_yaml(path)
+    config = resume.get("config", {})
+    sections = resume.get("sections", [])
+
+    # --- site JSON (not consumed by the site yet, but kept as the same
+    # single source of truth in case you add a resume page to the site) ---
+    json_out = SITE / "data" / "resume.json"
+    json_out.parent.mkdir(parents=True, exist_ok=True)
+    json_out.write_text(json.dumps(resume, indent=2), encoding="utf-8")
+    print(f"  wrote {json_out.relative_to(ROOT)}")
+
+    # --- LaTeX resume content via Jinja2 template ---
+    env = make_tex_env(RESUME_TEMPLATES)
+    template = env.get_template("resume_content.tex.j2")
+    rendered = template.render(sections=sections, config=config)
+    tex_out = LATEX / "resume" / "sections" / "resume_content.tex"
+    tex_out.parent.mkdir(parents=True, exist_ok=True)
+    header = (
+        "% AUTO-GENERATED by scripts/build.py from data/resume.yaml\n"
+        "% Do not hand-edit — edit the YAML instead and re-run the build.\n\n"
+    )
+    tex_out.write_text(header + rendered + "\n", encoding="utf-8")
+    print(f"  wrote {tex_out.relative_to(ROOT)}")
+
+
 def main():
     print("Building theme...")
     build_theme()
@@ -276,6 +354,8 @@ def main():
     build_title()
     print("Building projects...")
     build_projects()
+    print("Building resume...")
+    build_resume()
     print("Syncing media...")
     build_media()
     print("Building optional sections...")

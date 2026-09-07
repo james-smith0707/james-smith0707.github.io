@@ -10,12 +10,12 @@
 
 ((* for block in p.get('blocks', []) *))
 ((* if block.type == 'text' *))
-\projectText{(((block.content|trim|tex)))}
+\projectText{(((block.get('title','')|tex)))}{(((block.content|trim|tex)))}
 
 ((* elif block.type == 'photo' *))
 \projectPhoto{(((block.src)))}{(((block.get('title','')|tex)))}{(((block.get('caption','')|tex)))}
 
-((* elif block.type == 'gallery' *))
+((* elif block.type in ('gallery', 'carousel') *))
 \begin{projectGallery}{(((block.get('title','')|tex)))}
 ((* for item in block['items'] *))
 \projectGalleryItem{(((item.src)))}{(((item.get('title','')|tex)))}{(((item.get('caption','')|tex)))}{0.31}

@@ -79,7 +79,7 @@
     },
     "main_media": {
       "type": "image",
-      "src": "media/projects/line-follower-robot/cover.jpg",
+      "src": "media/projects/Reasoning_Preview.png",
       "title": "Final chassis, top view",
       "caption": "Custom PCB mounted above the IR sensor array and drive motors."
     },
@@ -130,228 +130,34 @@
         "src": "media/projects/Humanoid_OS/Humanoid_Nav_1_Web.mp4",
         "title": "Obstacle Avoidance and Workstsation Navigation",
         "caption": "The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag.",
-        "play_type": "button"
+        "play_type": "automatic"
       },
       {
         "type": "text",
         "content": "A two tiered perception system was used to join the speed of trained CV models with the intelegence of the onboard VLM. The design of the perception stack was geared towards part inspection, classification, and quality checks. Custom CV models were implameted using an ONNX runtime based detector. These raw bounding box + orientation detections fed through a tracking algorithm that turned  raw, high frequency detections, into sustained object permanance. Using the cameras depth frame, tracked objects could be located in 3D space relative  to the robot, and also in the world coordinate system using simple transforms. The other end of the perception stack was the high level reasoning model. By inerfacing with the QWEN based VLM the robot could asses its surroundings, read instructions, and preform intelegent quality assesments on parts based on official specs. These quality assesments would recive only a crop of a bounding box detection and both text and images of what qualities of the part to judge. Composing these features together the robot could detect a spesific part, locate it 6D space, preform an assesment, and track the part holding onto its judgement.\n"
       },
       {
-        "type": "gallery",
-        "title": "Simulation and Real Robot Executing A Button Press",
-        "items": [
-          {
-            "src": "media/projects/Humanoid_OS/Reasoning_Preview.png",
-            "title": "Reasoning Interface",
-            "caption": "Text based Chatbot interface for robot on web based dashboard."
-          },
-          {
-            "src": "media/projects/Humanoid_OS/Lidar_Map_Preview.png",
-            "title": "Lidar Map",
-            "caption": "Lidar Pointcloud Projection with Remembered Landmarks."
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "line-follower-robot",
-    "title": "Autonomous Line-Following Robot",
-    "subtitle": "PID-tuned mobile robot with adaptive speed control",
-    "dates": "Jan 2026 \u2013 Mar 2026",
-    "tags": [
-      "Embedded Systems",
-      "Control Theory",
-      "PCB Design"
-    ],
-    "tools": [
-      "STM32",
-      "KiCad",
-      "C",
-      "MATLAB"
-    ],
-    "short_description": "A two-wheeled autonomous robot that follows a taped track using an IR sensor array and a tuned PID control loop, holding speed through sharp corners without losing the line.\n",
-    "skills_demonstrated": [
-      "PID control tuning",
-      "PCB layout and fabrication",
-      "Embedded C firmware",
-      "Sensor array calibration"
-    ],
-    "links": {
-      "github": "https://github.com/yourusername/line-follower-robot",
-      "demo": "https://youtube.com/watch?v=example"
-    },
-    "main_media": {
-      "type": "image",
-      "src": "media/projects/line-follower-robot/cover.jpg",
-      "title": "Final chassis, top view",
-      "caption": "Custom PCB mounted above the IR sensor array and drive motors."
-    },
-    "blocks": [
-      {
-        "type": "gallery",
-        "title": "Build process",
-        "items": [
-          {
-            "src": "media/projects/line-follower-robot/build-1.jpg",
-            "title": "Bare PCB",
-            "caption": "First revision board fresh off the mill."
-          },
-          {
-            "src": "media/projects/line-follower-robot/build-2.jpg",
-            "title": "Populated board",
-            "caption": "Sensor array and motor drivers soldered in."
-          },
-          {
-            "src": "media/projects/line-follower-robot/build-3.jpg",
-            "title": "Chassis assembly",
-            "caption": "3D-printed chassis with motors mounted."
-          }
-        ]
-      },
-      {
         "type": "text",
-        "title": "Control loop redesign",
-        "content": "The first revision used a fixed-gain proportional controller, which oscillated badly on tight corners. Moving to a full PID loop with gain scheduling based on error magnitude let the robot hold near-top speed on straights while slowing smoothly into turns.\n"
-      },
-      {
-        "type": "photo",
-        "src": "media/projects/line-follower-robot/pid-tuning.jpg",
-        "title": "Tuning session",
-        "caption": "Logging sensor error against wheel speed to hand-tune PID gains."
-      },
-      {
-        "type": "text",
-        "content": "Final lap times improved by 38% over the proportional-only version, with zero track departures across 20 consecutive test laps.\n"
-      }
-    ]
-  },
-  {
-    "slug": "pcb-sensor-hub",
-    "title": "Modular PCB Sensor Hub",
-    "subtitle": "Stackable environmental sensor boards over I2C",
-    "dates": "May 2025 \u2013 Jul 2025",
-    "tags": [
-      "PCB Design",
-      "Firmware",
-      "IoT"
-    ],
-    "tools": [
-      "Altium Designer",
-      "STM32",
-      "I2C"
-    ],
-    "short_description": "A stackable sensor board system where each board adds one environmental sensor over a shared I2C bus, letting a project mix and match temperature, humidity, and air-quality sensing without redesigning the base board.\n",
-    "skills_demonstrated": [
-      "Multi-board PCB stack design",
-      "I2C bus arbitration",
-      "Low-power firmware design"
-    ],
-    "links": {
-      "github": "https://github.com/yourusername/pcb-sensor-hub"
-    },
-    "main_media": {
-      "type": "image",
-      "src": "media/projects/pcb-sensor-hub/cover.jpg",
-      "title": "Three-board stack",
-      "caption": "Base board with humidity and air-quality daughter boards attached."
-    },
-    "blocks": [
-      {
-        "type": "text",
-        "content": "Each daughter board carries a unique I2C address set by a resistor-strapped address pin, so boards can be stacked in any order and combination without firmware changes on the base.\n"
-      },
-      {
-        "type": "carousel",
-        "title": "Individual boards",
-        "items": [
-          {
-            "src": "media/projects/pcb-sensor-hub/board-temp.jpg",
-            "title": "Temperature board",
-            "caption": "Single-sensor board, smallest form factor in the stack."
-          },
-          {
-            "src": "media/projects/pcb-sensor-hub/board-humidity.jpg",
-            "title": "Humidity board",
-            "caption": "Includes onboard heater trace for condensation prevention."
-          },
-          {
-            "src": "media/projects/pcb-sensor-hub/board-airquality.jpg",
-            "title": "Air quality board",
-            "caption": "VOC sensor with dedicated shielding to reduce PCB heat coupling."
-          }
-        ]
-      },
-      {
-        "type": "photo",
-        "src": "media/projects/pcb-sensor-hub/stack-schematic.png",
-        "title": "Bus topology",
-        "caption": "Shared I2C bus routed through the board-to-board stacking connector."
-      }
-    ]
-  },
-  {
-    "slug": "robotic-arm",
-    "title": "3-DOF Desktop Robotic Arm",
-    "subtitle": "Inverse-kinematics-driven pick-and-place arm",
-    "dates": "Sep 2025 \u2013 Dec 2025",
-    "tags": [
-      "Robotics",
-      "CAD",
-      "Kinematics"
-    ],
-    "tools": [
-      "SolidWorks",
-      "Arduino",
-      "Python"
-    ],
-    "short_description": "A three-degree-of-freedom robotic arm with a custom inverse kinematics solver, designed and 3D-printed from scratch for a desktop pick-and-place demo.\n",
-    "skills_demonstrated": [
-      "Inverse kinematics derivation",
-      "Parametric CAD modeling",
-      "Servo control and calibration"
-    ],
-    "links": {
-      "github": "https://github.com/yourusername/robotic-arm"
-    },
-    "main_media": {
-      "type": "image",
-      "src": "media/projects/robotic-arm/cover.jpg",
-      "title": "Assembled arm",
-      "caption": "Full assembly with gripper attachment at rest position."
-    },
-    "blocks": [
-      {
-        "type": "photo",
-        "src": "media/projects/robotic-arm/cad-overview.png",
-        "title": "CAD overview",
-        "caption": "Full linkage assembly modeled before any printing began."
-      },
-      {
-        "type": "text",
-        "content": "Rather than use a lookup table, I derived closed-form inverse kinematics for the 3-link planar arm so any target (x, y) within the workspace maps directly to joint angles \u2014 no iterative solving needed on the microcontroller.\n"
-      },
-      {
-        "type": "stl",
-        "src": "media/projects/robotic-arm/gripper-jaw.stl",
-        "title": "Gripper jaw (interactive)",
-        "caption": "Drag to rotate \u2014 this is the actual print file for the final jaw geometry.",
-        "autorotate": true,
-        "background": "#0B1116",
-        "pdf_fallback": "media/projects/robotic-arm/gripper-jaw-render.png"
-      },
-      {
-        "type": "text",
-        "content": "The gripper jaw went through four print iterations to get enough compliance to grip irregular objects without a force sensor, using a living-hinge geometry at the jaw base.\n"
+        "content": "Policies were developed in IssacLab by designing complex reward systems and training cirriculums. Once verified, the neural networks (ONNX) were transfered into the runtime stack, into a two tiered policy executor; high level policy control for permissions and transitions, and an ONNX runtime based policy runner. Policy execution used a forwards kinematics engine, and the traked detctions to target objects, for example the button press.\n"
       },
       {
         "type": "video",
-        "src": "media/projects/robotic-arm/pick-and-place-demo.mp4",
-        "poster": "media/projects/robotic-arm/pick-and-place-poster.jpg",
-        "title": "Pick-and-place demo",
-        "caption": "Arm sorting objects by color using a webcam and OpenCV.",
-        "play_type": "button",
-        "pdf_fallback": "media/projects/robotic-arm/pick-and-place-poster.jpg"
+        "src": "media/projects/Humanoid_OS/button_press_split.mp4",
+        "title": "Robot Button Press",
+        "caption": "Reinforcement learning policy in NVDIA IssacLab and deployed on hardare.",
+        "play_type": "automatic"
+      },
+      {
+        "type": "text",
+        "title": "next steps",
+        "content": "Using IssacLab to develop a part pickup policy was the next step in development. \n"
+      },
+      {
+        "type": "video",
+        "src": "media/projects/Humanoid_OS/part_pickup_sim.mp4",
+        "title": "Reinforcement Learning Part Pickup",
+        "caption": "Robot Picking Up a Part in NVDIA IssacLab developing a RL policy.",
+        "play_type": "automatic"
       }
     ]
   },

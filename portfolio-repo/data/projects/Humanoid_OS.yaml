@@ -32,9 +32,10 @@ links:
 # Main media shown directly under the title/subtitle, before any blocks.
 main_media:
   type: image
-  src: "media/projects/line-follower-robot/cover.jpg"
+  src: "media/projects/Reasoning_Preview.png"
   title: "Final chassis, top view"
   caption: "Custom PCB mounted above the IR sensor array and drive motors."
+
 
 # ------------------------------------------------------------
 # BLOCKS — rendered in this exact order on the site and in the
@@ -87,7 +88,7 @@ blocks:
     src: "media/projects/Humanoid_OS/Humanoid_Nav_1_Web.mp4"
     title: "Obstacle Avoidance and Workstsation Navigation"
     caption: "The robot navigating through doors, walking around tables, and docking to a spesific offset from a remembered tag."
-    play_type: button
+    play_type: automatic
 
   - type: text
     content: >
@@ -98,15 +99,34 @@ blocks:
       intelegent quality assesments on parts based on official specs. These quality assesments would recive only a crop of a bounding box detection and both text and images of what qualities of the part to judge. Composing these features together the robot could detect a spesific part, locate it 6D space, preform an assesment, and track the part holding
       onto its judgement.
 
-  - type: gallery
-    title: "Simulation and Real Robot Executing A Button Press"
-    items:
-      - src: "media/projects/Humanoid_OS/Reasoning_Preview.png"
-        title: "Reasoning Interface"
-        caption: "Text based Chatbot interface for robot on web based dashboard."
-      - src: "media/projects/Humanoid_OS/Lidar_Map_Preview.png"
-        title: "Lidar Map"
-        caption: "Lidar Pointcloud Projection with Remembered Landmarks."
+
+  - type: text
+    content: >
+      Policies were developed in IssacLab by designing complex reward systems and training cirriculums. Once verified, the neural networks (ONNX) were
+      transfered into the runtime stack, into a two tiered policy executor; high level policy control for permissions and transitions, and an ONNX runtime based policy runner.
+      Policy execution used a forwards kinematics engine, and the traked detctions to target objects, for example the button press.
+  
+  - type: video
+    src: "media/projects/Humanoid_OS/button_press_split.mp4"
+    title: "Robot Button Press"
+    caption: "Reinforcement learning policy in NVDIA IssacLab and deployed on hardare."
+    play_type: automatic
+
+  - type: text
+    title: "next steps"
+    content: >
+      Using IssacLab to develop a part pickup policy was the next step in development. 
+    
+  - type: video
+    src: "media/projects/Humanoid_OS/part_pickup_sim.mp4"
+    title: "Reinforcement Learning Part Pickup"
+    caption: "Robot Picking Up a Part in NVDIA IssacLab developing a RL policy."
+    play_type: automatic
+
+
+
+
+
 
 
   
